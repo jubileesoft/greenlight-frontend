@@ -1,4 +1,12 @@
 <div local-class="protected-app-manage-privileges">
+  <Submit as |form|>
+    <form.button>
+      Hello
+    </form.button>
+    <form.button>
+      Hello
+    </form.button>
+  </Submit>
   <div>
     <AmselInput
       @value={{this.privilegeShort}}
@@ -45,7 +53,7 @@
         >
           <row.cell>
             {{#if (eq index this.mouseOverIndex)}}
-            {{!-- {{#if true}} --}}
+              {{!-- {{#if true}} --}}
               <div local-class="actions">
                 <Icon
                   @icon="angle-up"
