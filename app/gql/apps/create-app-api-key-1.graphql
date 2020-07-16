@@ -1,0 +1,3 @@
+mutation createAppApiKey1($appId: String!) {
+  createAppApiKey1(appId: $appId)
+}

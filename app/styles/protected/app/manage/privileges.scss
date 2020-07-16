@@ -1,0 +1,16 @@
+.protected-app-manage-privileges {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .table-wrapper {
+    height: 100%;
+    overflow-y: scroll;
+
+    .actions {
+      display: flex;
+      flex-direction: row;
+    }
+  }
+}

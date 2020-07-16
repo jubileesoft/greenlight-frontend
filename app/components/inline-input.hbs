@@ -1,0 +1,11 @@
+<input
+  local-class={{
+    concat
+    "inline-input"
+    (if this.isOnChange " is-on-change")
+    (if this.isOnChangeError " is-on-change-error")
+  }}
+  type="text"
+  value={{@value}}
+  {{on "focusout" this.onBlur}}
+/>

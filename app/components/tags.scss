@@ -1,0 +1,39 @@
+.tags {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 20px;
+
+  .input-display {
+    margin-right: 6px;
+  }
+
+  .add-button-text {
+    cursor: pointer;
+    background: #eef5fc;
+    font-size: 12px;
+    outline: none;
+    padding:2px 6px;
+  }
+
+  .add-button-icon {
+    cursor: pointer;
+    height: 18px;
+    width: 24px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background: #eef5fc;
+    font-size: 10px;
+    outline: none;
+
+    &:hover {
+      background: darken(#eef5fc, 10%);
+    }
+
+    &:focus {
+      border: 1px dashed gray;
+    }
+  }
+}

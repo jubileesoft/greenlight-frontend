@@ -1,0 +1,21 @@
+{{#if this.recorder.show}}
+  <div
+    local-class={{
+      concat
+      "recorder "
+      (if this.isError "error" (if this.isWarning "warning" "info"))
+    }}
+  >
+    <div local-class="type">
+      <FaIcon @icon="exclamation-triangle" />
+    </div>
+    <div local-class="text">
+      {{this.recorder.record.text}}
+    </div>
+    <div local-class="actions" {{on "click" this.recorder.unshow}}>
+      {{#if (eq this.recorder.record.type 2)}}
+        close
+      {{/if}}
+    </div>
+  </div>
+{{/if}}

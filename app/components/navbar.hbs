@@ -1,0 +1,37 @@
+<div local-class="root">
+  <NavbarIcon
+    @icon="bars"
+    @isExpanded={{this.persistence.navbarIsExpanded}}
+    type="button"
+    {{on "click" this.toggleIsExpanded}}
+  />
+  <NavbarIcon
+    @icon="dove"
+    @text="Apps"
+    @route="protected.admin-apps"
+    @isExpanded={{this.persistence.navbarIsExpanded}}
+  />
+  <NavbarIcon
+    @icon="cog"
+    @text="System"
+    @route="protected.admin-system"
+    @isExpanded={{this.persistence.navbarIsExpanded}}
+  />
+
+  {{#if this.persistence.selectedAppId}}
+    <NavbarIcon
+      @icon="user-lock"
+      @text="User Claims"
+      @route="protected.app.user-claims"
+      @model={{this.persistence.selectedAppId}}
+      @isExpanded={{this.persistence.navbarIsExpanded}}
+    />
+    <NavbarIcon
+      @icon="tools"
+      @text="App Management"
+      @route="protected.app.manage"
+      @model={{this.persistence.selectedAppId}}
+      @isExpanded={{this.persistence.navbarIsExpanded}}
+    />
+  {{/if}}
+</div>

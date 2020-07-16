@@ -1,0 +1,21 @@
+:global(.yt-default-table) {
+  border-spacing: 0;
+}
+
+:global(.yt-default-thead) {
+  text-align: left;
+
+  th {
+    padding: 0 4px;
+  }
+}
+
+:global(.yt-default-tbodyRow) {
+  &:hover {
+    background: var(--accent-color);
+  }
+
+  td {
+    padding: 2px 4px;
+  }
+}

@@ -1,0 +1,14 @@
+<div local-class="app-manage">
+    <div local-class="list">
+      <LinkTo @route="protected.app.manage.api">
+        Api
+      </LinkTo>
+      <LinkTo @route="protected.app.manage.privileges">
+        Privileges
+      </LinkTo>
+      <LinkTo @route="protected.app.manage.privilege-pools">
+        Privilege Pools
+      </LinkTo>
+    </div>
+  {{outlet}}
+</div>

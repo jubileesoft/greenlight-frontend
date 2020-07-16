@@ -1,0 +1,3 @@
+mutation deletePrivilege($privilegeId: String!) {
+  deletePrivilege(privilegeId: $privilegeId)
+}

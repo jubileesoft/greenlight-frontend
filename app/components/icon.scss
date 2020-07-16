@@ -1,0 +1,19 @@
+.icon {
+  height: 28px;
+  width: 28px;
+
+  border: 1px solid gray;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.enabled {
+  cursor: pointer;
+}
+
+.disabled {
+  pointer-events: none;
+}

@@ -1,0 +1,11 @@
+.protected-app {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .outlet {
+    overflow-y: hidden;
+    flex-grow: 1;
+  }
+}

@@ -1,0 +1,8 @@
+<div local-class="admin-apps-new">
+  App Name
+  <AmselInput @value={{this.name}} @onChange={{fn (mut this.name)}} />
+  App Owner
+  <AmselInput @value={{this.owner}} @onChange={{fn (mut this.owner)}} />
+
+  <button class="button" {{on "click" this.save}}>Save</button>
+</div>

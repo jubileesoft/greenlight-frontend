@@ -1,0 +1,8 @@
+query getAllUsers {
+  getAllUsers {
+    id
+    offId
+    email
+    tags
+  }
+}

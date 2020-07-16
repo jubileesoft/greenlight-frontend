@@ -1,0 +1,36 @@
+<div local-class="navbar-icon">
+  {{#if @route}}
+    {{#if @model}}
+      <LinkTo @route={{@route}} @model={{@model}}>
+        <div local-class="icon" ...attributes>
+          <FaIcon @icon={{@icon}} @size={{this.size}} @fixedWidth={{true}} />
+        </div>
+        {{#if @isExpanded}}
+          <div local-class="text" ...attributes>
+            {{@text}}
+          </div>
+        {{/if}}
+      </LinkTo>
+    {{else}}
+      <LinkTo @route={{@route}}>
+        <div local-class="icon" ...attributes>
+          <FaIcon @icon={{@icon}} @size={{this.size}} @fixedWidth={{true}} />
+        </div>
+        {{#if @isExpanded}}
+          <div local-class="text" ...attributes>
+            {{@text}}
+          </div>
+        {{/if}}
+      </LinkTo>
+    {{/if}}
+  {{else}}
+    <div local-class="icon pointer" ...attributes>
+      <FaIcon @icon={{@icon}} @size={{this.size}} @fixedWidth={{true}} />
+    </div>
+    {{#if (and @isExpanded @text)}}
+      <div local-class="text" ...attributes>
+        {{@text}}
+      </div>
+    {{/if}}
+  {{/if}}
+</div>

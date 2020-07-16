@@ -1,0 +1,19 @@
+query getPrivilegePools($appId: String!) {
+  getPrivilegePools(appId: $appId) {
+    id
+    app {
+      id
+    }
+    name
+    order
+    privileges {
+      id
+      name
+      order
+      short
+      tags
+    }
+    short
+    tags
+  }
+}

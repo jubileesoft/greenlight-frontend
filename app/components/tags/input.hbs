@@ -1,0 +1,21 @@
+{{#if (eq this.mode "edit")}}
+  {{! EDIT MODE }}
+  <input
+    ...attributes
+    local-class="edit-input"
+    type="text"
+    {{on-key "Tab" this.triggerOnAdd}}
+    {{on-key "Enter" this.triggerOnAdd}}
+    {{did-insert this.onDidInsertInputEditMode}}
+  />
+{{else}}
+  {{! DISPLAY MODE }}
+  <div ...attributes local-class="tag-input-display-mode">
+    <div local-class="value">
+      {{@value}}
+    </div>
+    <div local-class="remove-button" role="button" {{on "click" this.onRemove}}>
+      <FaIcon @icon="times" @size="lg" />
+    </div>
+  </div>
+{{/if}}

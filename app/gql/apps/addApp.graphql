@@ -1,0 +1,7 @@
+mutation addApp($input: AddAppInput!) {
+  addApp(input: $input) {
+    id
+    name
+    owner
+  }
+}

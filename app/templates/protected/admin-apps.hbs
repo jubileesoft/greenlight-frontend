@@ -1,0 +1,15 @@
+<div local-class="admin-apps">
+  <div local-class="list-area">
+    <div class="button" {{on "click" this.newApp}}>
+      New App
+    </div>
+    <div local-class="list">
+      {{#each @model.apps as |app|}}
+        <LinkTo local-class="link" @route="protected.admin-apps.id" @model={{app.id}}>
+          {{app.name}}
+        </LinkTo>
+      {{/each}}
+    </div>
+  </div>
+  {{outlet}}
+</div>

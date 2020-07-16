@@ -1,0 +1,30 @@
+@import 'global';
+@import 'yeti-table';
+@import "ember-modal-dialog/ember-modal-structure";
+@import "ember-modal-dialog/ember-modal-appearance";
+
+html,
+body {
+  --primary-color: #ff3b42;
+  --accent-color: #ffe1e1;
+  //--accent-light-color: #d7d7d7;
+  --background-color: #fafafa;
+  //--card-color: #393939;
+  --text-color: #333940; // #696D6E;
+  --text-color-on-primary: #ffffff;
+  --text-color-on-accent: #ffffff;
+
+
+  width: 100vw;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+
+  overflow-y: hidden;
+
+  background: var(--background-color);
+  color: var(--text-color);
+}

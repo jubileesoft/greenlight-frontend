@@ -1,0 +1,8 @@
+query getApps {
+  getApps {
+    id
+    name
+    owner
+    apiKey1CreatedAt
+  }
+}

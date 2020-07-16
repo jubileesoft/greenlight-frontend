@@ -1,0 +1,35 @@
+.app-manage {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.app-manage .list {
+  height: 100%;
+  border-right: 1px var(--text-color) solid;
+  min-width: 200px;
+
+  overflow-y: auto;
+
+  display: flex;
+  flex-direction: column;
+
+  a {
+    text-decoration: none;
+    color: var(--text-color);
+    min-height: 36px;
+    padding: 0 8px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    &:global(.active) {
+      background: var(--accent-color);
+    }
+  }
+
+  a:hover {
+    background: var(--accent-color);
+  }
+}

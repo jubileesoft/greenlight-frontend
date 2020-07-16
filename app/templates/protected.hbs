@@ -1,0 +1,14 @@
+<div local-class="root">
+  <div local-class="content">
+    <Navbar />
+    {{outlet}}
+  </div>
+  {{#if this.recorder.show}}
+  HALLO
+    <div local-class="info">
+      <div local-class="recorder-area">
+        <Recorder />
+      </div>
+    </div>
+  {{/if}}
+</div>

@@ -1,0 +1,19 @@
+.admin-users {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.admin-users .list-area {
+  border-right: 1px gray solid;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+
+  .list {
+    height: 100%;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,12 @@
+mutation orderDownPrivilege($privilegeId: String!) {
+  orderDownPrivilege(privilegeId: $privilegeId) {
+    id
+    app {
+      id
+    }
+    name
+    order
+    short
+    tags
+  }
+}

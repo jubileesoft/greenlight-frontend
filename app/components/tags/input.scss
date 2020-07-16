@@ -1,0 +1,33 @@
+.tag-input-display-mode {
+  display: flex;
+  flex-direction: row;
+  background: #eef5fc;
+  align-items: center;
+  font-size: 12px;
+
+  .value {
+    padding: 2px 6px;
+  }
+
+  .remove-button {
+    font-size: 10px;
+    height: 18px;
+    width: 18px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    &:hover {
+      background: darken(#eef5fc, 10%);
+    }
+  }
+}
+
+.edit-input {
+  height: 18px;
+  border: 1px solid #cbcbcb;
+  padding: 0 4px;
+  outline: none;
+  font-size: 12px;
+}

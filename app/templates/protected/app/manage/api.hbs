@@ -1,0 +1,14 @@
+<div local-class="protected-app-manage-api">
+  CreatedAt: {{@model.app.apiKey1CreatedAt}}
+
+  <div class="button" {{on "click" this.createApiKey1}}>
+    Create New Api Key 1
+  </div>
+</div>
+
+{{#if this.apiKey1}}
+  <ModalDialog>
+    New ApiKey: {{this.apiKey1}}
+    <div class="button" {{on "click" this.closeModal}}>CLOSE</div>
+  </ModalDialog>
+{{/if}}

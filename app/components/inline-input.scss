@@ -1,0 +1,30 @@
+.inline-input {
+  font-family: inherit;
+  font-size: 100%;
+
+  width: 100%;
+  padding: 8px;
+  margin: 0;
+  box-sizing: border-box;
+
+  border: 1px solid transparent; 
+  outline: none;
+  background: transparent;
+
+  &:hover {
+    border: 1px solid gainsboro;
+  }
+
+  &:focus {
+    border: 1px solid gainsboro;
+    background: #ffffff;
+  }
+
+  &.is-on-change {
+    border: 1px dashed gainsboro;
+  }
+
+  &.is-on-change-error {
+    border: 1px solid red;
+  }
+}
