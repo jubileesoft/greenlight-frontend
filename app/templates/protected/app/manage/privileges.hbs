@@ -1,11 +1,11 @@
 <div local-class="protected-app-manage-privileges">
   <Submit as |form|>
-    <form.button>
-      Hello
-    </form.button>
-    <form.button>
-      Hello
-    </form.button>
+    <form.button
+      @text="Add"
+      @type="primary"
+      {{on "click" (fn this.addPrivilege @model.app.id)}}
+    />
+    <form.button @text="Cancel" />
   </Submit>
   <div>
     <AmselInput
@@ -17,9 +17,9 @@
       @onChange={{fn (mut this.privilegeName)}}
     />
     <Tags @onChange={{this.tagsOnChange}} @selectedTags={{this.selectedTags}} />
-    <div class="button" {{on "click" (fn this.addPrivilege @model.app.id)}}>
+    {{!-- <div class="button" {{on "click" (fn this.addPrivilege @model.app.id)}}>
       Add Privilege
-    </div>
+    </div> --}}
   </div>
   <div local-class="table-wrapper">
     <YetiTable
@@ -33,16 +33,16 @@
     >
       <table.header as |header|>
         <header.column @sortable={{false}} style="width: 100px;" />
-        <header.column @prop="id">
+        <header.column @sortable={{false}}>
           Id
         </header.column>
-        <header.column @prop="short">
+        <header.column @sortable={{false}}>
           Short
         </header.column>
-        <header.column @prop="name">
+        <header.column @sortable={{false}}>
           Name
         </header.column>
-        <header.column @prop="tags">
+        <header.column @sortable={{false}}>
           Tags
         </header.column>
       </table.header>

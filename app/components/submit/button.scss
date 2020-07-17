@@ -1,0 +1,36 @@
+.button {
+  height: 40px;
+
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  margin-right: 20px;
+
+  border: 1px solid var(--gray-2);
+  border-radius: 18px;
+
+  &.primary {
+    background: var(--secondary-color-1-1);
+
+    &:hover {
+      background: var(--secondary-color-1-2);
+    }
+  }
+
+  &.secondary {
+    background: var(--gray-1);
+
+    &:hover {
+      background: var(--gray-2);
+    }
+  }
+
+  .button-text {
+    font-size: 18px;
+    padding: 0 32px;
+  }
+}

@@ -29,6 +29,7 @@ export default class ProtectedAppManagePrivileges extends Controller.extend({
 
   @action
   async addPrivilege(appId: string) {
+    console.log(this.model);
     const input: AddPrivilegeInput = {
       name: this.privilegeName,
       short: this.privilegeShort ?? undefined,

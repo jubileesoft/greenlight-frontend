@@ -1,1 +1,9 @@
-{{yield}}
+<div role="button" local-class={{concat "button " this.type}} ...attributes>
+  {{#if (has-block)}}
+    {{yield}}
+  {{else}}
+    <div local-class="button-text">
+      {{@text}}
+    </div>
+  {{/if}}
+</div>

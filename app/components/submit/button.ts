@@ -1,5 +1,11 @@
 import Component from '@glimmer/component';
 
-interface SubmitButtonArgs {}
+interface SubmitButtonArgs {
+  type: string;
+}
 
-export default class SubmitButton extends Component<SubmitButtonArgs> {}
+export default class SubmitButton extends Component<SubmitButtonArgs> {
+  get type() {
+    return this.args.type || 'secondary';
+  }
+}
