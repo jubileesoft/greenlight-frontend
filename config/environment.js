@@ -3,6 +3,7 @@
 module.exports = function (environment) {
   let ENV = {
     modulePrefix: 'greenlight-frontend',
+    podModulePrefix: 'greenlight-frontend/pod',
     environment,
     rootURL: '/',
     locationType: 'auto',
