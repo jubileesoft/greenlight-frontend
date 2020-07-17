@@ -4,6 +4,12 @@
   display: flex;
   flex-direction: column;
 
+  .card-1 {
+    margin: 16px 20px 20px 20px;
+    display: flex;
+    flex-direction: column;
+  }
+
   .table-wrapper {
     height: 100%;
     overflow-y: scroll;

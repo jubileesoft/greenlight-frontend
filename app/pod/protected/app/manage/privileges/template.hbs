@@ -5,100 +5,106 @@
       @type="primary"
       {{on "click" (fn this.addPrivilege @model.app.id)}}
     />
-    <form.button @text="Cancel and clear input" />
+    <form.button @text="Cancel" />
   </Submit>
-  <div>
-    <AmselInput
-      @value={{this.privilegeShort}}
-      @onChange={{fn (mut this.privilegeShort)}}
-    />
-    <AmselInput
-      @value={{this.privilegeName}}
-      @onChange={{fn (mut this.privilegeName)}}
-    />
-    <Tags @onChange={{this.tagsOnChange}} @selectedTags={{this.selectedTags}} />
-    {{!-- <div class="button" {{on "click" (fn this.addPrivilege @model.app.id)}}>
-      Add Privilege
-    </div> --}}
-  </div>
-  <div local-class="table-wrapper">
-    <YetiTable
-      @theme={{
-        hash
-        table="yt-default-table"
-        thead="yt-default-thead"
-        tbodyRow="yt-default-tbodyRow"
-      }}
-      @data={{@model.privileges}} as |table|
-    >
-      <table.header as |header|>
-        <header.column @sortable={{false}} style="width: 100px;" />
-        <header.column @sortable={{false}}>
-          Id
-        </header.column>
-        <header.column @sortable={{false}}>
-          Short
-        </header.column>
-        <header.column @sortable={{false}}>
-          Name
-        </header.column>
-        <header.column @sortable={{false}}>
-          Tags
-        </header.column>
-      </table.header>
-      <table.body as |body privilege index|>
-        <body.row
-          {{on "mouseover" (fn (mut this.mouseOverIndex) index)}}
-          {{on "mouseleave" (fn (mut this.mouseOverIndex) null)}} as |row|
-        >
-          <row.cell>
-            {{#if (eq index this.mouseOverIndex)}}
-              {{!-- {{#if true}} --}}
-              <div local-class="actions">
-                <Icon
-                  @icon="angle-up"
-                  {{on "click" (fn this.dataPrivilege.orderUp privilege)}}
-                />
-                <Icon
-                  @icon="angle-down"
-                  {{on "click" (fn this.dataPrivilege.orderDown privilege)}}
-                />
-                <Icon
-                  @icon="times"
-                  {{on "click" (fn this.dataPrivilege.delete privilege)}}
-                />
-              </div>
-            {{/if}}
-          </row.cell>
-          <row.cell>
-            {{privilege.id}}
-          </row.cell>
-          <row.cell>
-            <InlineInput
-              @value={{privilege.short}}
-              @onChange={{
-                fn this.dataPrivilege.updateProperty privilege "short"
-              }}
-            />
-          </row.cell>
-          <row.cell>
-            <InlineInput
-              @value={{privilege.name}}
-              @onChange={{
-                fn this.dataPrivilege.updateProperty privilege "name"
-              }}
-            />
-          </row.cell>
-          <row.cell>
-            <Tags
-              @selectedTags={{privilege.tags}}
-              @onChange={{
-                fn this.dataPrivilege.updateProperty privilege "tags"
-              }}
-            />
-          </row.cell>
-        </body.row>
-      </table.body>
-    </YetiTable>
-  </div>
+
+  <Card local-class="card-1">
+    <Section @text="New Privilege">
+      me
+    </Section>
+    <div>
+      <AmselInput
+        @value={{this.privilegeShort}}
+        @onChange={{fn (mut this.privilegeShort)}}
+      />
+      <AmselInput
+        @value={{this.privilegeName}}
+        @onChange={{fn (mut this.privilegeName)}}
+      />
+      <Tags
+        @onChange={{this.tagsOnChange}}
+        @selectedTags={{this.selectedTags}}
+      />
+    </div>
+    <div local-class="table-wrapper">
+      <YetiTable
+        @theme={{
+          hash
+          table="yt-default-table"
+          thead="yt-default-thead"
+          tbodyRow="yt-default-tbodyRow"
+        }}
+        @data={{@model.privileges}} as |table|
+      >
+        <table.header as |header|>
+          <header.column @sortable={{false}} style="width: 100px;" />
+          <header.column @sortable={{false}}>
+            Id
+          </header.column>
+          <header.column @sortable={{false}}>
+            Short
+          </header.column>
+          <header.column @sortable={{false}}>
+            Name
+          </header.column>
+          <header.column @sortable={{false}}>
+            Tags
+          </header.column>
+        </table.header>
+        <table.body as |body privilege index|>
+          <body.row
+            {{on "mouseover" (fn (mut this.mouseOverIndex) index)}}
+            {{on "mouseleave" (fn (mut this.mouseOverIndex) null)}} as |row|
+          >
+            <row.cell>
+              {{#if (eq index this.mouseOverIndex)}}
+                {{!-- {{#if true}} --}}
+                <div local-class="actions">
+                  <Icon
+                    @icon="angle-up"
+                    {{on "click" (fn this.dataPrivilege.orderUp privilege)}}
+                  />
+                  <Icon
+                    @icon="angle-down"
+                    {{on "click" (fn this.dataPrivilege.orderDown privilege)}}
+                  />
+                  <Icon
+                    @icon="times"
+                    {{on "click" (fn this.dataPrivilege.delete privilege)}}
+                  />
+                </div>
+              {{/if}}
+            </row.cell>
+            <row.cell>
+              {{privilege.id}}
+            </row.cell>
+            <row.cell>
+              <InlineInput
+                @value={{privilege.short}}
+                @onChange={{
+                  fn this.dataPrivilege.updateProperty privilege "short"
+                }}
+              />
+            </row.cell>
+            <row.cell>
+              <InlineInput
+                @value={{privilege.name}}
+                @onChange={{
+                  fn this.dataPrivilege.updateProperty privilege "name"
+                }}
+              />
+            </row.cell>
+            <row.cell>
+              <Tags
+                @selectedTags={{privilege.tags}}
+                @onChange={{
+                  fn this.dataPrivilege.updateProperty privilege "tags"
+                }}
+              />
+            </row.cell>
+          </body.row>
+        </table.body>
+      </YetiTable>
+    </div>
+  </Card>
 </div>

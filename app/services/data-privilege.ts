@@ -97,12 +97,12 @@ export default class DataPrivilege extends Service.extend({
             const variables = {
               appId: privilege.app.id,
             };
-            const data: { getPrivileges: Privilege[] } = store.readQuery({
+            const dataRead: { getPrivileges: Privilege[] } = store.readQuery({
               query: getPrivilegesQuery,
               variables,
             });
 
-            const orderedArray = data.getPrivileges.sort((a, b) => {
+            const orderedArray = dataRead.getPrivileges.sort((a, b) => {
               if (a.order < b.order) {
                 return -1;
               }
@@ -111,11 +111,11 @@ export default class DataPrivilege extends Service.extend({
               }
               return 0;
             });
-            const newData = {
+            const data = {
               getPrivileges: orderedArray,
             };
 
-            store.writeQuery({ query: getPrivilegesQuery, newData, variables });
+            store.writeQuery({ query: getPrivilegesQuery, data, variables });
           },
         },
         'orderUpPrivilege',
@@ -142,12 +142,12 @@ export default class DataPrivilege extends Service.extend({
             const variables = {
               appId: privilege.app.id,
             };
-            const data: { getPrivileges: Privilege[] } = store.readQuery({
+            const dataRead: { getPrivileges: Privilege[] } = store.readQuery({
               query: getPrivilegesQuery,
               variables,
             });
 
-            const orderedArray = data.getPrivileges.sort((a, b) => {
+            const orderedArray = dataRead.getPrivileges.sort((a, b) => {
               if (a.order < b.order) {
                 return -1;
               }
@@ -156,11 +156,11 @@ export default class DataPrivilege extends Service.extend({
               }
               return 0;
             });
-            const newData = {
+            const data = {
               getPrivileges: orderedArray,
             };
 
-            store.writeQuery({ query: getPrivilegesQuery, newData, variables });
+            store.writeQuery({ query: getPrivilegesQuery, data, variables });
           },
         },
         'orderDownPrivilege',

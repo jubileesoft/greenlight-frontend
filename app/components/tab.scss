@@ -1,0 +1,18 @@
+.tab {
+  display: flex;
+  flex-direction: column;
+  
+  
+
+  .items {
+    height: 60px;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: row;
+    background: white;
+  }
+
+  .item-outlet {
+    height: 100%;
+  }
+}

@@ -1,0 +1,15 @@
+<div local-class="section">
+  <div local-class="header" {{on "click" this.headerClicked}}>
+    {{#if this.isExpanded}}
+      <FaIcon @icon="chevron-down" local-class="icon" />
+    {{else}}
+      <FaIcon @icon="chevron-up" local-class="icon" />
+    {{/if}}
+    <div local-class="text" class="no-select">
+      {{@text}}
+    </div>
+  </div>
+  {{#if this.isExpanded}}
+    {{yield}}
+  {{/if}}
+</div>

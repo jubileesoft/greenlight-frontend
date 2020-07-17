@@ -1,0 +1,40 @@
+.tab-item {
+  margin-right: 40px;
+  height: 100%;
+
+  a {
+    height: 100%;
+    display: grid;
+    grid-template-rows: 1fr 8px;
+    grid-template-columns: auto;
+
+    text-decoration: none;
+    color: inherit;
+
+    .active-area {
+      grid-row-start: 2;
+      grid-row-end: 3;
+      grid-column-start: 1;
+      grid-column-end: 2;
+    }
+
+    .text {
+      grid-row-start: 1;
+      grid-row-end: 3;
+      grid-column-start: 1;
+      grid-column-end: 2;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+
+    &:global(.active) {
+      transition: text-shadow 0.2s;
+      text-shadow: 0 0 0.65px, 0 0 0.65px;
+    }
+
+    &:global(.active) .active-area {
+      background: var(--primary-color);
+    }
+  }
+}

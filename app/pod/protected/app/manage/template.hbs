@@ -1,14 +1,19 @@
 <div local-class="app-manage">
-    <div local-class="list">
-      <LinkTo @route="protected.app.manage.api">
-        Api
-      </LinkTo>
-      <LinkTo @route="protected.app.manage.privileges">
-        Privileges
-      </LinkTo>
-      <LinkTo @route="protected.app.manage.privilege-pools">
-        Privilege Pools
-      </LinkTo>
-    </div>
-  {{outlet}}
+  <Tab local-class="tab" as |tab|>
+    <tab.item
+      @text="Api"
+      @route="protected.app.manage.api"
+    />
+    <tab.item
+      @text="Privileges"
+      @route="protected.app.manage.privileges"
+    />
+    <tab.item
+      @text="Privilege Pools"
+      @route="protected.app.manage.privilege-pools"
+    />
+  </Tab>
+  <div local-class="outlet">
+    {{outlet}}
+  </div>
 </div>

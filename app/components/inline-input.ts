@@ -13,7 +13,6 @@ export default class InlineInput extends Component<InlineInputArgs> {
 
   @action
   async onBlur(event) {
-    console.log('blur');
     if (!this.args.onChange || event.target.value === this.args.value) {
       return;
     }
