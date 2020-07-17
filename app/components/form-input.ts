@@ -4,7 +4,7 @@ import { A } from '@ember/array';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
-interface AmselInputArgs {
+interface FormInputArgs {
   value?: string;
   items?: any[];
   displayPropertyName?: string;
@@ -13,7 +13,7 @@ interface AmselInputArgs {
   onChange?(newValue: string): void;
 }
 
-export default class AmselInput extends Component<AmselInputArgs> {
+export default class FormInput extends Component<FormInputArgs> {
   @tracked foundItems = A();
   foundItemsToItems: Map<number, number> = new Map<number, number>();
   @tracked selectedIndex: number | null = null;
@@ -49,7 +49,11 @@ export default class AmselInput extends Component<AmselInputArgs> {
 
     for (let index = 0; index < this.args.items.length; index++) {
       const element = this.args.items[index];
-      if (element[this.args.displayPropertyName!].toLowerCase().includes(searchString)) {
+      if (
+        element[this.args.displayPropertyName!]
+          .toLowerCase()
+          .includes(searchString)
+      ) {
         resultArray.push(element);
         this.foundItemsToItems.set(resultArray.length - 1, index);
       }
@@ -94,7 +98,8 @@ export default class AmselInput extends Component<AmselInputArgs> {
         if (this.selectedIndex === this.foundItems.length - 1) {
           break;
         }
-        this.selectedIndex = this.selectedIndex == null ? 0 : this.selectedIndex + 1;
+        this.selectedIndex =
+          this.selectedIndex == null ? 0 : this.selectedIndex + 1;
         selectedIndexHasChanged = true;
         break;
 

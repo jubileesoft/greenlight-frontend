@@ -1,5 +1,6 @@
-<div style="position: relative;">
+<div style="position: relative; width: 100%">
   <input
+    local-class="form-input"
     type="text"
     value={{if @displayPropertyName (get @value @displayPropertyName) @value}}
     {{on "input" (perform this.onInputTask)}}

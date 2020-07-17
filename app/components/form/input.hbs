@@ -1,0 +1,11 @@
+<div
+  local-class={{
+    concat
+    "input"
+    (if (eq this.size "fill") " size-fill")
+    (if (eq this.size "1x") " size-1x")
+    (if (eq this.size "2x") " size-2x")
+  }}
+>
+  {{yield}}
+</div>

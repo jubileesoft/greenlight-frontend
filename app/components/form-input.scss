@@ -1,0 +1,25 @@
+.form-input {
+  min-height: 36px;
+  width: 100%;
+
+  box-sizing: border-box;
+
+  border-radius: 0;
+  border: 1px solid var(--gray-2);
+
+  outline: none;
+  font-family: inherit;
+  font-size: inherit;
+  padding: 0 8px;
+}
+
+.found-items {
+  position: absolute;
+
+  border: 1px solid var(--text-color);
+
+  padding: 8px;
+
+  display: flex;
+  flex-direction: column;
+}

@@ -22,6 +22,17 @@ export default class ProtectedAppManagePrivileges extends Controller.extend({
   //@tracked privilegeTags: Ember.NativeArray<string> = A();
   @tracked selectedTags: string[] = [];
 
+  get canAdd() {
+    return this.privilegeName != null;
+  }
+
+  @action
+  resetForm() {
+    this.privilegeName = null;
+    this.privilegeShort = null;
+    this.selectedTags = [];
+  }
+
   @action
   tagsOnChange(newTags: string[]) {
     this.selectedTags = newTags;

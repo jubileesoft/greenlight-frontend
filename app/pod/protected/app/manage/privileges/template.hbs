@@ -1,31 +1,48 @@
 <div local-class="protected-app-manage-privileges">
-  <Submit as |form|>
-    <form.button
-      @text="Submit"
-      @type="primary"
-      {{on "click" (fn this.addPrivilege @model.app.id)}}
-    />
-    <form.button @text="Cancel" />
-  </Submit>
+  {{#if this.canAdd}}
+    <Submit as |form|>
+      <form.button
+        @text="Submit"
+        @type="primary"
+        {{on "click" (fn this.addPrivilege @model.app.id)}}
+      />
+      <form.button @text="Cancel" {{on "click" this.resetForm}} />
+    </Submit>
+  {{/if}}
 
   <Card local-class="card-1">
-    <Section @text="New Privilege">
-      me
+    <Section @text="Add new Privilege">
+      <Form as |form|>
+        <form.label>
+          Name
+        </form.label>
+        <form.input @size="2x">
+          <FormInput
+            @value={{this.privilegeName}}
+            @onChange={{fn (mut this.privilegeName)}}
+          />
+        </form.input>
+        <form.label>
+          Short
+        </form.label>
+        <form.input @size="2x">
+          <FormInput
+            @value={{this.privilegeShort}}
+            @onChange={{fn (mut this.privilegeShort)}}
+          />
+        </form.input>
+        <form.label>
+          Tags
+        </form.label>
+        <form.input @size="fill">
+          <Tags
+            @onChange={{this.tagsOnChange}}
+            @selectedTags={{this.selectedTags}}
+          />
+        </form.input>
+      </Form>
     </Section>
-    <div>
-      <AmselInput
-        @value={{this.privilegeShort}}
-        @onChange={{fn (mut this.privilegeShort)}}
-      />
-      <AmselInput
-        @value={{this.privilegeName}}
-        @onChange={{fn (mut this.privilegeName)}}
-      />
-      <Tags
-        @onChange={{this.tagsOnChange}}
-        @selectedTags={{this.selectedTags}}
-      />
-    </div>
+
     <div local-class="table-wrapper">
       <YetiTable
         @theme={{
