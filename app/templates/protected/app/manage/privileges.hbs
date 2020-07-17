@@ -1,11 +1,11 @@
 <div local-class="protected-app-manage-privileges">
   <Submit as |form|>
     <form.button
-      @text="Add"
+      @text="Submit"
       @type="primary"
       {{on "click" (fn this.addPrivilege @model.app.id)}}
     />
-    <form.button @text="Cancel" />
+    <form.button @text="Cancel and clear input" />
   </Submit>
   <div>
     <AmselInput
