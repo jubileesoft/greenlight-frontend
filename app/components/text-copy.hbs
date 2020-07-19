@@ -1,0 +1,7 @@
+<div local-class="text-copy">
+  {{@text}}
+  <div local-class="icon" {{on "click" this.copyToClipboard}}>
+    <FaIcon @icon="copy" />
+    {{yield}}
+  </div>
+</div>

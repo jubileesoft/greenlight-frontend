@@ -1,0 +1,31 @@
+.text-copy {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  //border-bottom: 1px solid transparent;
+  width: auto;
+
+  &:hover {
+    //border-bottom: 1px dashed var(--gray-2);
+
+    .icon {
+      visibility: visible ;
+    }
+  }
+
+  .icon {
+    visibility: hidden;
+    margin-left: 8px;
+    width: 14px;
+    color: var(--gray-2);
+
+    &:hover {
+      color: var(--gray-3);
+      cursor: pointer;
+    }
+
+    &:active {
+      color: var(--primary-color);
+    }
+  }
+}

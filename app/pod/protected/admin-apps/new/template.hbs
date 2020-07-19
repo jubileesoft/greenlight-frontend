@@ -1,8 +1,23 @@
 <div local-class="admin-apps-new">
-  App Name
-  <AmselInput @value={{this.name}} @onChange={{fn (mut this.name)}} />
-  App Owner
-  <AmselInput @value={{this.owner}} @onChange={{fn (mut this.owner)}} />
-
-  <button class="button" {{on "click" this.save}}>Save</button>
+  <Card>
+    <Section @text="Add new App">
+      <Form as |form|>
+        <form.label>
+          Name
+        </form.label>
+        <form.input>
+          <FormInput @value={{this.name}} @onChange={{fn (mut this.name)}} />
+        </form.input>
+        <form.label>
+          Owner
+        </form.label>
+        <form.input>
+          <FormInput @value={{this.owner}} @onChange={{fn (mut this.owner)}} />
+        </form.input>
+      </Form>
+    </Section>
+  </Card>
+  <button class="button" {{on "click" this.save}}>
+    Save
+  </button>
 </div>
