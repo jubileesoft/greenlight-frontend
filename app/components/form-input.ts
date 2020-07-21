@@ -9,7 +9,7 @@ interface FormInputArgs {
   items?: any[];
   displayPropertyName?: string;
   delay?: number;
-  onSelect?(itemIndex: number): void;
+  onSelect?(item: any): void;
   onChange?(newValue: string): void;
 }
 
@@ -123,5 +123,26 @@ export default class FormInput extends Component<FormInputArgs> {
     }
     const value = (event.target as HTMLInputElement).value;
     this.args.onChange(value);
+  }
+
+  @action
+  expanderClicked() {
+    console.log('A');
+    if (this.foundItems.length === 0) {
+      this.foundItems = A(this.args.items);
+    } else {
+      this.foundItems = A();
+    }
+  }
+
+  @action
+  itemClicked(item: any) {
+    this.foundItems = A();
+
+    if (!this.args.onSelect) {
+      return;
+    }
+
+    this.args.onSelect(item);
   }
 }

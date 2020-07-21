@@ -1,10 +1,9 @@
 <div local-class="root">
   <div local-class="content">
-    <Navbar />
+    <Navbar @apps={{@model.apps}}/>
     {{outlet}}
   </div>
   {{#if this.recorder.show}}
-  HALLO
     <div local-class="info">
       <div local-class="recorder-area">
         <Recorder />

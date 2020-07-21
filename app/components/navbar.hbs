@@ -34,4 +34,16 @@
       @isExpanded={{this.persistence.navbarIsExpanded}}
     />
   {{/if}}
+
+  <div local-class="selected-app-area">
+    <div local-class="header">
+      App
+    </div>
+    <FormInput
+      @items={{@apps}}
+      @value={{this.selectedApp}}
+      @displayPropertyName="name"
+      @onSelect={{fn this.selectedAppChanged}}
+    />
+  </div>
 </div>

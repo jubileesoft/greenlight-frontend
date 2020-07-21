@@ -28,8 +28,13 @@ export default class Persistence extends Service.extend({
     }
   }
 
-  setSelectedAppId(id: string) {
-    localStorage.setItem(STORAGE.SELECTEDAPPID, id);
+  setSelectedAppId(id: string | null) {
+    if (id) {
+      localStorage.setItem(STORAGE.SELECTEDAPPID, id);
+    } else {
+      localStorage.removeItem(STORAGE.SELECTEDAPPID);
+    }
+
     this.selectedAppId = id;
   }
 

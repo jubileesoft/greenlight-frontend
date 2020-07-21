@@ -1,17 +1,25 @@
-<div style="position: relative; width: 100%">
-  <input
-    local-class="form-input"
-    type="text"
-    value={{if @displayPropertyName (get @value @displayPropertyName) @value}}
-    {{on "input" (perform this.onInputTask)}}
-    {{on "keydown" this.onKeyDown}}
-    {{on "change" this.onChange}}
-  />
-  {{#if this.hasFoundItems}}
+<div style="position: relative; width: 100%" ...attributes>
+  <div local-class="grid">
+    <input
+      local-class="form-input"
+      type="text"
+      value={{if @displayPropertyName (get @value @displayPropertyName) @value}}
+      {{on "input" (perform this.onInputTask)}}
+      {{on "keydown" this.onKeyDown}}
+      {{on "change" this.onChange}}
+    />
+    <div local-class="expander" {{on "click" this.expanderClicked}}>
+      <FaIcon @icon="chevron-down" @size="1x" />
+    </div>
+  </div>
+  {{#if (gt this.foundItems.length 0)}}
     <div local-class="found-items">
       {{#each this.foundItems as |foundItem index|}}
-        <div>
-          {{foundItem.email}}
+        <div
+          local-class={{concat "item" (if (eq foundItem @value) " selected")}}
+          {{on "click" (fn this.itemClicked foundItem)}}
+        >
+          {{get foundItem @displayPropertyName}}
         </div>
       {{/each}}
     </div>

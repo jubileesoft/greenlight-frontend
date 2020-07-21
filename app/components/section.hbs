@@ -1,9 +1,11 @@
-<div local-class="section">
+<div local-class="section" ...attributes>
   <div local-class="header" {{on "click" this.headerClicked}}>
-    {{#if this.isExpanded}}
-      <FaIcon @icon="chevron-down" local-class="icon" />
-    {{else}}
-      <FaIcon @icon="chevron-up" local-class="icon" />
+    {{#if this.showExpander}}
+      {{#if this.isExpanded}}
+        <FaIcon @icon="chevron-down" local-class="icon" />
+      {{else}}
+        <FaIcon @icon="chevron-right" local-class="icon" />
+      {{/if}}
     {{/if}}
     <div local-class="text" class="no-select">
       {{@text}}

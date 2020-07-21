@@ -1,14 +1,41 @@
 <div local-class="protected-app-manage-api">
-  CreatedAt: {{@model.app.apiKey1CreatedAt}}
-
-  <div class="button" {{on "click" this.createApiKey1}}>
-    Create New Api Key 1
-  </div>
+  <Card local-class="card-1">
+    {{#if @model.app.apiKey1CreatedAt}}
+      <Section @text="Key" local-class="key-section">
+        <Form as |form|>
+          <form.label>
+            Created:
+          </form.label>
+          <form.label>
+            {{
+              format-date
+              @model.app.apiKey1CreatedAt
+              weekday="long"
+              year="numeric"
+              month="2-digit"
+              day="2-digit"
+              hour="2-digit"
+              minute="2-digit"
+              second="2-digit"
+            }}
+          </form.label>
+        </Form>
+      </Section>
+    {{/if}}
+    <Submit::Button
+      local-class="generate-button"
+      @text="Generate new key"
+      @type="secondary"
+      {{on "click" this.createApiKey1}}
+    />
+  </Card>
 </div>
 
 {{#if this.apiKey1}}
   <ModalDialog>
     New ApiKey: {{this.apiKey1}}
-    <div class="button" {{on "click" this.closeModal}}>CLOSE</div>
+    <div class="button" {{on "click" this.closeModal}}>
+      CLOSE
+    </div>
   </ModalDialog>
 {{/if}}
