@@ -19,7 +19,9 @@ Router.map(function () {
       this.route('manage', function() {
         this.route('api');
         this.route('privileges');
-        this.route('privilege-pools');
+        this.route('privilege-pools', function() {
+          this.route('new');
+        });
       });
     });
   });

@@ -1,0 +1,89 @@
+<div local-class="root">
+  <Card local-class="card">
+    <Form as |form|>
+      <form.label>
+        Name
+      </form.label>
+      <form.input @size="2x">
+        <FormInput @value={{this.name}} />
+      </form.input>
+      <form.label>
+        Short
+      </form.label>
+      <form.input @size="2x">
+        <FormInput @value={{this.short}} />
+      </form.input>
+      <form.label>
+        Tags
+      </form.label>
+      <form.input @size="fill">
+        <Tags
+          @onChange={{fn (mut this.selectedTags)}}
+          @selectedTags={{this.selectedTags}}
+        />
+      </form.input>
+    </Form>
+
+    <div local-class="table-area">
+      <div local-class="header">
+        {{@model.privileges.length}} items
+      </div>
+      <YetiTable
+        @theme={{
+          hash
+          table="yt-default-table"
+          thead="yt-default-thead"
+          tbodyRow="yt-default-tbodyRow"
+        }}
+        @data={{@model.privileges}} as |table|
+      >
+        <table.header as |header|>
+          <header.column @sortable={{false}} style="width: 85px;" />
+          <header.column @sortable={{false}}>
+            Id
+          </header.column>
+          <header.column @sortable={{false}}>
+            Name
+          </header.column>
+          <header.column @sortable={{false}}>
+            Short
+          </header.column>
+          <header.column @sortable={{false}}>
+            Tags
+          </header.column>
+        </table.header>
+        <table.body as |body privilege index|>
+          <body.row
+            {{on "mouseover" (fn (mut this.mouseOverIndex) index)}}
+            {{on "mouseleave" (fn (mut this.mouseOverIndex) null)}} as |row|
+          >
+            <row.cell>
+              {{!-- {{#if true}} --}}
+              <div local-class="actions">
+                <Icon
+                  @icon="angle-up"
+                  {{!-- {{on "click" (fn this.dataPrivilege.orderUp privilege)}} --}}
+                />
+                <TableRowSelector @selectedIndexes={{this.selectedIndexes}} />
+              </div>
+            </row.cell>
+            <row.cell>
+              <TextCopy @text={{privilege.id}}>
+                <EmberTooltip @text="Copy to Clipboard" />
+              </TextCopy>
+            </row.cell>
+            <row.cell>
+              {{privilege.name}}
+            </row.cell>
+            <row.cell>
+              {{privilege.short}}
+            </row.cell>
+            <row.cell>
+              <Tags @selectedTags={{privilege.tags}} @isReadOnly={{true}} />
+            </row.cell>
+          </body.row>
+        </table.body>
+      </YetiTable>
+    </div>
+  </Card>
+</div>

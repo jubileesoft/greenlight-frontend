@@ -11,6 +11,7 @@ interface TagsInputArgs {
   value?: string;
   onRemove(tag?: string): void;
   onAdd(tag: string): void;
+  isReadOnly: boolean;
 }
 
 export default class TagsInput extends Component<TagsInputArgs> {

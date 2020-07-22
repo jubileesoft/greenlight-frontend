@@ -1,1 +1,11 @@
-{{outlet}}
+<div local-class="root">
+  <Card local-class="list">
+    <Submit::Button
+      local-class="adjust"
+      @type="secondary"
+      @text="New Privilege Pool"
+      {{on "click" this.newPrivilegePool}}
+    />
+  </Card>
+  {{outlet}}
+</div>

@@ -7,12 +7,20 @@ import { next } from '@ember/runloop';
 interface TagsInputArgs {
   tags: string[];
   selectedTags: string[];
-  onChange(selectedTabs: string[]): void;
+  onChange?(selectedTabs: string[]): void;
+  isReadOnly?: boolean;
 }
 
 export default class TagsInput extends Component<TagsInputArgs> {
   @tracked isEditMode: boolean = false;
   addButtonIconId = guidFor(this);
+
+  get isReadOnly() {
+    if (typeof this.args.isReadOnly !== 'boolean') {
+      return false;
+    }
+    return this.args.isReadOnly;
+  }
 
   @action
   addTag() {
@@ -28,6 +36,9 @@ export default class TagsInput extends Component<TagsInputArgs> {
     }
 
     workingArray.splice(index, 1);
+    if (!this.args.onChange) {
+      return;
+    }
     this.args.onChange(workingArray);
   }
 
@@ -40,7 +51,9 @@ export default class TagsInput extends Component<TagsInputArgs> {
         ? this.args.selectedTags.concat(tag).sort()
         : [tag];
 
-      this.args.onChange(returnArray);
+      if (this.args.onChange) {
+        this.args.onChange(returnArray);
+      }
     }
 
     next(this, () => {

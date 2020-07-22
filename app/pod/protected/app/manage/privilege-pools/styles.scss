@@ -1,0 +1,18 @@
+.root {
+  height: 100%;
+  width: 100%;
+  padding-top: 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+
+  .list {
+    margin: 0 20px;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.root .list .adjust {
+  margin-right: 0;
+}

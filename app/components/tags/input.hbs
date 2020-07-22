@@ -14,8 +14,14 @@
     <div local-class="value">
       {{@value}}
     </div>
-    <div local-class="remove-button" role="button" {{on "click" this.onRemove}}>
-      <FaIcon @icon="times" @size="lg" />
-    </div>
+    {{#unless @isReadOnly}}
+      <div
+        local-class="remove-button"
+        role="button"
+        {{on "click" this.onRemove}}
+      >
+        <FaIcon @icon="times" @size="lg" />
+      </div>
+    {{/unless}}
   </div>
 {{/if}}

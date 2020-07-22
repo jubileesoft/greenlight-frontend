@@ -5,30 +5,33 @@
       @mode="display"
       @value={{tag}}
       @onRemove={{this.onRemoveTag}}
+      @isReadOnly={{this.isReadOnly}}
     />
   {{/each}}
-  {{#if this.isEditMode}}
-    <Tags::Input @mode="edit" @onAdd={{this.onAddTag}} />
-  {{else}}
-    {{#if (eq this.args.selectedTags.length 0)}}
-      <div
-        local-class="add-button-text"
-        role="button"
-        {{on "click" this.addTag}}
-      >
-        Add tag
-      </div>
+  {{#unless this.isReadOnly}}
+    {{#if this.isEditMode}}
+      <Tags::Input @mode="edit" @onAdd={{this.onAddTag}} />
     {{else}}
-      <div
-        contenteditable
-        id={{this.addButtonIconId}}
-        local-class="add-button-icon"
-        role="button"
-        {{on "click" this.addTag}}
-        {{on-key "Enter"}}
-      >
-        <FaIcon @icon="plus" @size="lg" />
-      </div>
+      {{#if (eq this.args.selectedTags.length 0)}}
+        <div
+          local-class="add-button-text"
+          role="button"
+          {{on "click" this.addTag}}
+        >
+          Add tag
+        </div>
+      {{else}}
+        <div
+          contenteditable
+          id={{this.addButtonIconId}}
+          local-class="add-button-icon"
+          role="button"
+          {{on "click" this.addTag}}
+          {{on-key "Enter"}}
+        >
+          <FaIcon @icon="plus" @size="lg" />
+        </div>
+      {{/if}}
     {{/if}}
-  {{/if}}
+  {{/unless}}
 </div>
