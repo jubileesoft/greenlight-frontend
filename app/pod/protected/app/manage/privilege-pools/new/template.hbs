@@ -59,13 +59,8 @@
           >
             <row.cell>
               {{!-- {{#if true}} --}}
-              <div local-class="actions">
-                <Icon
-                  @icon="angle-up"
-                  {{!-- {{on "click" (fn this.dataPrivilege.orderUp privilege)}} --}}
-                />
-                <TableRowSelector @selectedIndexes={{this.selectedIndexes}} />
-              </div>
+
+              <TableRowSelector @selectedIndexes={{this.selectedIndexes}} />
             </row.cell>
             <row.cell>
               <TextCopy @text={{privilege.id}}>

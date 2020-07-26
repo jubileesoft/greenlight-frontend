@@ -8,7 +8,12 @@ export default class Protected extends Route.extend({
   // anything which *must* be merged to prototype here
 }) {
   @service persistence!: Persistence;
+  @service session;
   @queryManager apollo: any;
+
+  beforeModel(transition) {
+    this.session.requireAuthentication(transition, 'login');
+  }
 
   async model() {
     const apps = await this.apollo.watchQuery(

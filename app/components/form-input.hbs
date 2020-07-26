@@ -8,9 +8,11 @@
       {{on "keydown" this.onKeyDown}}
       {{on "change" this.onChange}}
     />
+    {{#if @items}}
     <div local-class="expander" {{on "click" this.expanderClicked}}>
       <FaIcon @icon="chevron-down" @size="1x" />
     </div>
+    {{/if}}
   </div>
   {{#if (gt this.foundItems.length 0)}}
     <div local-class="found-items">

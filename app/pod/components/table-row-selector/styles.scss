@@ -1,0 +1,64 @@
+.root {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.size-1x {
+  width: 18px;
+  height: 18px;
+  font-size: 12px;
+}
+
+.size-2x {
+  width: 22px;
+  height: 22px;
+}
+
+.container {
+  display: block;
+  position: relative;
+
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #ffffff;
+  border: 2px solid var(--primary-color);
+  box-sizing: border-box;
+  border-radius: 4px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon {
+  display: none;
+  color: var(--primary-color);
+}
+
+.container input:checked ~ .checkmark .icon {
+  display: block;
+}
+
+.container:hover input ~ .checkmark {
+  background-color: var(--primary-color-lighten-45);
+}

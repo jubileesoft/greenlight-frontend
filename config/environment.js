@@ -26,6 +26,22 @@ module.exports = function (environment) {
     apollo: {
       apiURL: 'http://localhost:3000/graphql',
     },
+
+    torii: {
+      routeIfAlreadyAuthenticated: 'protected',
+      providers: {
+        'google-oauth2-bearer-v2': {
+          apiKey: process.env.GOOGLE_API_KEY,
+          redirectUri: process.env.GOOGLE_REDIRECT_URI,
+          scope: 'openid email profile',
+        },
+        'microsoft-oauth2': {
+          clientId: process.env.MICROSOFT_CLIENT_ID,
+          tenantId: process.env.MICROSOFT_TENANT_ID,
+          scope: 'openid email profile',
+        },
+      },
+    },
   };
 
   if (environment === 'development') {
@@ -36,7 +52,7 @@ module.exports = function (environment) {
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
 
     ENV['ember-apollo-client'] = {
-      connectToDevTools: true
+      connectToDevTools: true,
     };
   }
 
