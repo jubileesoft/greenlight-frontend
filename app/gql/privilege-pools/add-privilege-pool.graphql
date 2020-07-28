@@ -1,0 +1,19 @@
+mutation addPrivilegePool($appId: String!, $input: AddPrivilegePoolInput!) {
+  addPrivilegePool(appId: $appId, input: $input) {
+    id
+    app {
+      id
+    }
+    name
+    order
+    privileges {
+      id
+      name
+      order
+      short
+      tags
+    }
+    short
+    tags
+  }
+}

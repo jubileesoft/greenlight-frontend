@@ -16,3 +16,8 @@
 .root .list .adjust {
   margin-right: 0;
 }
+
+.root .list .pool {
+  display: flex;
+  flex-direction: column;
+}

@@ -21,6 +21,9 @@ Router.map(function () {
         this.route('privileges');
         this.route('privilege-pools', function() {
           this.route('new');
+          this.route('id', { path: ':privilege_pool_id'}, function() {
+            this.route('edit');
+          });
         });
       });
     });

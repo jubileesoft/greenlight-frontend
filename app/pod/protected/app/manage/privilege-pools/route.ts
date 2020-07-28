@@ -4,7 +4,7 @@ import getPrivilegePoolsQuery from 'greenlight-frontend/gql/privilege-pools/get-
 import { App, PrivilegePool } from 'greenlight-frontend/gql/types';
 import RSVP from 'rsvp';
 
-interface Model {
+export interface Model {
   privilegePools: PrivilegePool[];
 }
 

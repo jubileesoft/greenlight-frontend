@@ -6,6 +6,23 @@
       @text="New Privilege Pool"
       {{on "click" this.newPrivilegePool}}
     />
+    <div>
+      {{#each @model.privilegePools as |privilegePool|}}
+        <LinkTo
+          @route="protected.app.manage.privilege-pools.id.index"
+          @model={{privilegePool.id}}
+        >
+          <div local-class="pool">
+            <div>
+              {{privilegePool.name}}
+            </div>
+            <div>
+              {{privilegePool.short}}
+            </div>
+          </div>
+        </LinkTo>
+      {{/each}}
+    </div>
   </Card>
   {{outlet}}
 </div>

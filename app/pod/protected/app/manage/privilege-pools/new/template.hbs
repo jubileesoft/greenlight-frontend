@@ -1,17 +1,27 @@
 <div local-class="root">
+  {{#if this.canAdd}}
+    <Submit as |form|>
+      <form.button
+        @text="Submit"
+        @type="primary"
+        {{on "click" (fn this.addPrivilegePool @model.app.id)}}
+      />
+      <form.button @text="Cancel" {{on "click" this.resetForm}} />
+    </Submit>
+  {{/if}}
   <Card local-class="card">
     <Form as |form|>
       <form.label>
         Name
       </form.label>
       <form.input @size="2x">
-        <FormInput @value={{this.name}} />
+        <FormInput @value={{this.name}} @onChange={{fn (mut this.name)}} />
       </form.input>
       <form.label>
         Short
       </form.label>
       <form.input @size="2x">
-        <FormInput @value={{this.short}} />
+        <FormInput @value={{this.short}} @onChange={{fn (mut this.short)}} />
       </form.input>
       <form.label>
         Tags
@@ -58,9 +68,10 @@
             {{on "mouseleave" (fn (mut this.mouseOverIndex) null)}} as |row|
           >
             <row.cell>
-              {{!-- {{#if true}} --}}
-
-              <TableRowSelector @selectedIndexes={{this.selectedIndexes}} />
+              <TableRowSelector
+                @index={{index}}
+                @selectedIndexes={{this.selectedIndexes}}
+              />
             </row.cell>
             <row.cell>
               <TextCopy @text={{privilege.id}}>

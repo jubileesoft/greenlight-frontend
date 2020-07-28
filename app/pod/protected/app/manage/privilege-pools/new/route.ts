@@ -29,6 +29,7 @@ export default class ProtectedAppManagePrivilegePoolsNew extends Route.extend({
         },
         'getPrivileges',
       ),
+      app,
     });
   }
 }
