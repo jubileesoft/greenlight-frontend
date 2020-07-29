@@ -2,6 +2,7 @@ import Controller from '@ember/controller';
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 import Type from 'ember__routing';
+import DataPrivilegePoolService from 'greenlight-frontend/services/data-privilege-pool';
 
 export default class ProtectedAppManagePrivilegePools extends Controller.extend(
   {
@@ -9,6 +10,7 @@ export default class ProtectedAppManagePrivilegePools extends Controller.extend(
   },
 ) {
   @service router!: Type.Router;
+  @service dataPrivilegePool!: DataPrivilegePoolService;
 
   @action
   newPrivilegePool() {

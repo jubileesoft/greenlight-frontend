@@ -16,6 +16,14 @@
     text-decoration: none;
     color: #ffffff;
   }
+
+  a:global(.active) {
+    background: var(--primary-color-lighten-20);
+  }
+
+  a:hover {
+    //background: var(--primary-color-lighten-45);
+  }
 }
 
 .navbar-icon .icon {

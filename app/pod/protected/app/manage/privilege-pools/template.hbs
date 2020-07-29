@@ -6,19 +6,30 @@
       @text="New Privilege Pool"
       {{on "click" this.newPrivilegePool}}
     />
-    <div>
+    <div local-class="items">
       {{#each @model.privilegePools as |privilegePool|}}
         <LinkTo
+          local-class="link"
           @route="protected.app.manage.privilege-pools.id.index"
           @model={{privilegePool.id}}
         >
-          <div local-class="pool">
+          <div local-class="grid-left">
             <div>
               {{privilegePool.name}}
             </div>
-            <div>
+            <div local-class="short">
               {{privilegePool.short}}
             </div>
+          </div>
+          <div local-class="grid-right">
+            <Icon
+              @icon="angle-up"
+              {{on "click" (fn this.dataPrivilegePool.orderUp privilegePool)}}
+            />
+            <Icon
+              @icon="angle-down"
+              {{on "click" (fn this.dataPrivilegePool.orderDown privilegePool)}}
+            />
           </div>
         </LinkTo>
       {{/each}}

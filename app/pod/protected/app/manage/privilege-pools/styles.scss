@@ -15,9 +15,73 @@
 
 .root .list .adjust {
   margin-right: 0;
+  margin-bottom: 20px;
 }
 
-.root .list .pool {
+.root .list .items {
+  height: 100%;
+
+  margin-left: -20px;
+  margin-right: -20px;
+  margin-bottom: -20px;
+
+  border-top: 1px solid var(--gray-1);
+
+  overflow-y: auto;
+
   display: flex;
   flex-direction: column;
+
+  .link {
+    border-bottom: 1px solid var(--gray-1);
+
+    display: grid;
+    grid-template-columns: 1fr auto;
+    height: 64px;
+
+    .grid-left {
+      grid-column-start: 1;
+      grid-column-end: 2;
+
+      align-self: center;
+
+      display: flex;
+      flex-direction: column;
+
+      padding: 10px 0 10px 20px;
+
+      .short {
+        font-size: 12px;
+        opacity: 0.5;
+        margin-top: 4px;
+      }
+    }
+
+    .grid-right {
+      display: none;
+      grid-column-start: 2;
+      grid-column-end: 3;
+
+      padding-right: 10px;
+    }
+  }
+
+  .link:hover {
+    background: var(--primary-color-lighten-45);
+  }
+
+  .link:hover .grid-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+
+  .link:global(.active) {
+    background: var(--primary-color-lighten-35);
+  }
+
+  a.link {
+    text-decoration: none;
+    color: inherit;
+  }
 }

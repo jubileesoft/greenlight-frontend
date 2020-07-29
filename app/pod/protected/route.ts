@@ -12,7 +12,7 @@ export default class Protected extends Route.extend({
   @queryManager apollo: any;
 
   beforeModel(transition) {
-    this.session.requireAuthentication(transition, 'login');
+    //this.session.requireAuthentication(transition, 'login');
   }
 
   async model() {
