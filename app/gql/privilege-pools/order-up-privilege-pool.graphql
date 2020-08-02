@@ -1,0 +1,6 @@
+mutation orderUpPrivilegePool($privilegePoolId: String!) {
+  orderUpPrivilegePool(privilegePoolId: $privilegePoolId) {
+    id
+    order
+  }
+}

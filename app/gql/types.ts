@@ -34,7 +34,7 @@ export interface PrivilegePool {
   id: string;
   app: App;
   name: string;
-  oder: string;
+  order: string;
   privileges: Privilege[];
   short?: string;
   tags?: string;
