@@ -34,7 +34,7 @@ steps:
 
   - task: PublishPipelineArtifact@1
     inputs:
-      targetPath: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+      targetPath: '$(Build.ArtifactStagingDirectory)/dist.zip'
       artifact: 'zip-artifact'
       publishLocation: 'pipeline'
     condition: succeeded()
