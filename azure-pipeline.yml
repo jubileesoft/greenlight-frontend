@@ -22,7 +22,23 @@ steps:
       target: 'dev'
     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/alpha'))
 
-  - task: PublishPipelineArtifact@0
-    displayName: 'Publish dist folder as drop artifact'
+  - task: ArchiveFiles@2
+    displayName: 'Zip dist folder'
     inputs:
-      targetPath: dist
+      rootFolderOrFile: '$(Build.BinariesDirectory)/dist'
+      includeRootFolder: false
+      archiveType: 'zip'
+      archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+      replaceExistingArchive: true
+    condition: succeeded()
+
+  - task: PublishPipelineArtifact@1
+    inputs:
+      targetPath: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+      artifact: 'dist_zip'
+      publishLocation: 'pipeline'
+
+  # - task: PublishPipelineArtifact@0
+  #   displayName: 'Publish dist folder as drop artifact'
+  #   inputs:
+  #     targetPath: dist
