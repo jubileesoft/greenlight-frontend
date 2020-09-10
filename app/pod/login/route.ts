@@ -1,12 +1,13 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
+import SessionService from 'ember-simple-auth/services/session';
 
 export default class Login extends Route.extend({
   // anything which *must* be merged to prototype here
 }) {
-  @service session;
+  @service session!: SessionService;
 
-  beforeModel(transition) {
-    this.session.prohibitAuthentication('protected');
+  beforeModel() {
+    this.session.prohibitAuthentication('authenticated');
   }
 }

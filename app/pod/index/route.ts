@@ -1,15 +1,15 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
-import Type from 'ember__routing';
+import SessionService from 'ember-simple-auth/services/session';
+import Transition from '@ember/routing/-private/transition';
 
 export default class Index extends Route.extend({
   // anything which *must* be merged to prototype here
 }) {
-  @service session;
-  @service router!: Type.Router;
+  @service session!: SessionService;
 
-  beforeModel(transition) {
+  beforeModel(transition: Transition) {
     this.session.requireAuthentication(transition, 'login');
-    this.router.transitionTo('protected');
+    this.transitionTo('authenticated');
   }
 }

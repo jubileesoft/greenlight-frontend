@@ -1,11 +1,12 @@
 import Controller from '@ember/controller';
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
+import SessionService from 'ember-simple-auth/services/session';
 
 export default class Login extends Controller.extend({
   // anything which *must* be merged to prototype here
 }) {
-  @service session;
+  @service session!: SessionService;
 
   @action
   async loginWithGoogle() {

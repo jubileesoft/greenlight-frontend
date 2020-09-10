@@ -1,5 +1,5 @@
 import EmberRouter from '@ember/routing/router';
-import config from './config/environment';
+import config from 'greenlight-frontend/config/environment';
 
 export default class Router extends EmberRouter {
   location = config.locationType;
@@ -16,16 +16,21 @@ Router.map(function () {
     this.route('admin-system');
     this.route('app', { path: ':app_id' }, function () {
       this.route('user-claims');
-      this.route('manage', function() {
+      this.route('manage', function () {
         this.route('api');
         this.route('privileges');
-        this.route('privilege-pools', function() {
+        this.route('privilege-pools', function () {
           this.route('new');
-          this.route('id', { path: ':privilege_pool_id'}, function() {
+          this.route('id', { path: ':privilege_pool_id' }, function () {
             this.route('edit');
           });
         });
       });
     });
+  });
+  this.route('authenticated', { path: 'auth' }, function() {
+    this.route('tenants');
+    this.route('apps');
+    this.route('unauthorized');
   });
 });
