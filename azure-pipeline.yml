@@ -16,7 +16,7 @@ steps:
       target: 'prod'
     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
 
-  - script: 'yarn run build --environment=development'
+  - script: 'yarn run build-dev'
     displayName: 'Build DEV'
     env:
       target: 'dev'
@@ -35,10 +35,6 @@ steps:
   - task: PublishPipelineArtifact@1
     inputs:
       targetPath: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-      artifact: 'dist_zip'
+      artifact: 'zip-artifact'
       publishLocation: 'pipeline'
-
-  # - task: PublishPipelineArtifact@0
-  #   displayName: 'Publish dist folder as drop artifact'
-  #   inputs:
-  #     targetPath: dist
+    condition: succeeded()
