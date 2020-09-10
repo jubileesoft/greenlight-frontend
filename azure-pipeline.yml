@@ -1,0 +1,28 @@
+trigger:
+  - develop
+  - master
+  - alpha
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+  - task: Yarn@3
+    displayName: 'Install Packages'
+
+  - script: 'yarn run build --environment=production'
+    displayName: 'Build PROD'
+    env:
+      target: 'prod'
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+
+  - script: 'yarn run build --environment=development'
+    displayName: 'Build DEV'
+    env:
+      target: 'dev'
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/alpha'))
+
+  - task: PublishPipelineArtifact@0
+    displayName: 'Publish dist folder as drop artifact'
+    inputs:
+      targetPath: dist
