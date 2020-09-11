@@ -28,7 +28,7 @@ steps:
       rootFolderOrFile: 'dist'
       includeRootFolder: false
       archiveType: 'zip'
-      archiveFile: 'dist.zip'
+      archiveFile: '$(Build.ArtifactStagingDirectory)/dist.zip'
       replaceExistingArchive: true
     condition: succeeded()
 
