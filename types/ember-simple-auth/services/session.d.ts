@@ -3,6 +3,17 @@ import { MutationOptions } from 'apollo-client';
 import Transition from '@ember/routing/-private/transition';
 
 export default class Session extends Service {
+  public isAuthenticated: boolean;
+
+  public data: {
+    authenticated: {
+      // Google Data
+      access_token?: string;
+
+      provider: string;
+    };
+  };
+
   public requireAuthentication(
     transition: Transition,
     routeOrCallback: string | (() => void),
