@@ -28,19 +28,8 @@ export default class Apollo extends ApolloService.extend({
   link() {
     let httpLink = super.link();
 
-    let authLink = setContext(async (request, context) => {
+    let authLink = setContext(async () => {
       return this._runAuthorize();
-      // debugger;
-      // console.log('HALLO');
-      // if (this.session.isAuthenticated) {
-      //   Object.assign(context.headers, {
-      //     headers: {
-      //       authorization: `Bearer ${this.session.data.authenticated.access_token}`,
-      //     },
-      //   });
-      // }
-
-      // return context;
     });
 
     return authLink.concat(httpLink);
@@ -51,7 +40,6 @@ export default class Apollo extends ApolloService.extend({
       return {};
     }
     return new Promise((resolve) => {
-      debugger;
       let headers = {
         authorization: '',
         xauthprovider: '',
@@ -64,7 +52,7 @@ export default class Apollo extends ApolloService.extend({
         token = this.session.data.authenticated.access_token;
         provider = 'google';
       } else {
-        token = this.session.data.authenticated.authorizationToken.id_token;
+        token = this.session.data.authenticated.authorizationToken?.id_token;
         provider = 'microsoft';
       }
 

@@ -10,6 +10,9 @@ export default class Session extends Service {
       // Google Data
       access_token?: string;
 
+      // Microsoft Data
+      authorizationToken?: { id_token: string };
+
       provider: string;
     };
   };

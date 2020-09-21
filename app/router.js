@@ -29,7 +29,7 @@ Router.map(function () {
     });
   });
   this.route('authenticated', { path: 'auth' }, function() {
-    this.route('tenants');
+    this.route('tenants', function() {});
     this.route('apps');
     this.route('unauthorized');
   });

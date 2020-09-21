@@ -1,27 +1,19 @@
 import ToriiAuthenticator from 'ember-simple-auth/authenticators/torii';
 import { inject as service } from '@ember/service';
+import ToriiService from 'torii/services/torii';
 
-export default ToriiAuthenticator.extend({
+export default class MicrosoftAuthenticator extends ToriiAuthenticator {
   // #region Services
 
-  torii: service(),
+  @service torii!: ToriiService;
 
   // #endregion Services
 
   // #region Fields
 
-  _providers: null,
+  _providers = [];
 
   // #endregion Fields
-
-  // #region Hooks
-
-  init() {
-    this._super(...arguments);
-    this._providers = [];
-  },
-
-  // #endregion Hooks
 
   // #region Methods
 
@@ -48,7 +40,7 @@ export default ToriiAuthenticator.extend({
         reject();
       }
     });
-  },
+  }
 
   authenticate(provider, options) {
     this._assertToriiIsPresent();
@@ -65,7 +57,7 @@ export default ToriiAuthenticator.extend({
         reject(error);
       }
     });
-  },
+  }
 
   /** This method invalidates the token and stops the refresh mechanisms */
   invalidate(data) {
@@ -85,7 +77,7 @@ export default ToriiAuthenticator.extend({
         reject(error);
       }
     });
-  },
+  }
 
   // #endregion Methods
 
@@ -110,7 +102,15 @@ export default ToriiAuthenticator.extend({
     }
 
     return true;
-  },
+  }
+
+  _getDate(time: number): Date {
+    let date = new Date(time);
+    if (date.getFullYear() < 2017) {
+      date = new Date(time * 1000);
+    }
+    return date;
+  }
 
   // #endregion Private Methods
 
@@ -139,7 +139,7 @@ export default ToriiAuthenticator.extend({
     }
 
     return null;
-  },
+  }
 
   _decodeJwt(jwtToken) {
     if (this._isEmpty(jwtToken)) {
@@ -161,11 +161,11 @@ export default ToriiAuthenticator.extend({
     };
 
     return crackedToken;
-  },
+  }
 
   _isEmpty(str) {
     return typeof str === 'undefined' || !str || 0 === str.length;
-  },
+  }
 
   _base64DecodeStringUrlSafe(base64IdToken) {
     // html5 should support atob function for decoding
@@ -175,7 +175,7 @@ export default ToriiAuthenticator.extend({
     } else {
       return decodeURIComponent(escape(this._decode(base64IdToken)));
     }
-  },
+  }
 
   _decode(base64IdToken) {
     var codes =
@@ -231,7 +231,7 @@ export default ToriiAuthenticator.extend({
     }
 
     return decoded;
-  },
+  }
 
   // #endregion ADAL.JS Methods (from Microsoft)
-});
+}

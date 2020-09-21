@@ -22,13 +22,13 @@ var MicrosoftOauth2 = Oauth2.extend({
   baseUrl: computed('_endpoint', 'tenantId', function () {
     let baseUrl = this._endpoint;
 
-    baseUrl += 'common';
+    //baseUrl += 'common';
 
-    // if (this.tenantId === undefined) {
-    //   baseUrl += 'common/v2.0';
-    // } else {
-    //   baseUrl += this.tenantId;
-    // }
+    if (this.tenantId === undefined) {
+      baseUrl += 'common/v2.0';
+    } else {
+      baseUrl += this.tenantId;
+    }
 
     baseUrl += '/oauth2/v2.0/authorize';
 

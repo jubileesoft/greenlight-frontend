@@ -9,7 +9,13 @@ export default class Index extends Route.extend({
   @service session!: SessionService;
 
   beforeModel(transition: Transition) {
-    this.session.requireAuthentication(transition, 'login');
-    this.transitionTo('authenticated');
+    const authenticated: boolean = this.session.requireAuthentication(
+      transition,
+      'login',
+    );
+
+    if (authenticated) {
+      this.transitionTo('authenticated');
+    }
   }
 }

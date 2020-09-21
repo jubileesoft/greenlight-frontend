@@ -1,5 +1,6 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
+import Transition from '@ember/routing/-private/transition';
 import { queryManager } from 'ember-apollo-client';
 import ApolloService from 'greenlight-frontend/services/apollo';
 import SessionService from 'ember-simple-auth/services/session';
@@ -16,8 +17,8 @@ export default class Authenticated extends Route.extend({
   @queryManager apollo!: ApolloService;
   @service session!: SessionService;
 
-  beforeModel() {
-    //this.session.requireAuthentication(transition, 'login');
+  beforeModel(transition: Transition) {
+    this.session.requireAuthentication(transition, 'login');
   }
 
   async model(): Promise<AuthenticatedRouteModel | null> {

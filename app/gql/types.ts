@@ -15,6 +15,11 @@ export interface User {
   roles: UserRole[];
 }
 
+export interface Tenant {
+  id: string;
+  name: string;
+}
+
 export interface App {
   id: string;
   name: string;
