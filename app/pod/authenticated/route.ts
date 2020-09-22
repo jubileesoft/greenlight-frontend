@@ -6,6 +6,7 @@ import ApolloService from 'greenlight-frontend/services/apollo';
 import SessionService from 'ember-simple-auth/services/session';
 import getMeQuery from 'greenlight-frontend/gql/users/get-me.graphql';
 import { User, UserRoleType } from 'greenlight-frontend/gql/types';
+import UserService from 'greenlight-frontend/services/user';
 
 export interface AuthenticatedRouteModel {
   user: User;
@@ -16,6 +17,7 @@ export default class Authenticated extends Route.extend({
 }) {
   @queryManager apollo!: ApolloService;
   @service session!: SessionService;
+  @service user!: UserService;
 
   beforeModel(transition: Transition) {
     this.session.requireAuthentication(transition, 'login');

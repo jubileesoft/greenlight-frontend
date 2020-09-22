@@ -1,12 +1,13 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 import { AuthenticatedRouteModel } from 'greenlight-frontend/pod/authenticated/route';
-import { UserRoleType, Tenant } from 'greenlight-frontend/gql/types';
+import { UserRoleType, Tenant, User } from 'greenlight-frontend/gql/types';
 import getTenantsQuery from 'greenlight-frontend/gql/tenants/get-tenants.graphql';
 import ApolloService from 'ember-apollo-client/services/apollo';
 
 export interface AuthenticatedTenantsModel {
   tenants: Tenant[] | null;
+  me: User;
 }
 
 export default class AuthenticatedTenants extends Route.extend({
@@ -37,6 +38,9 @@ export default class AuthenticatedTenants extends Route.extend({
   }
 
   async model(): Promise<AuthenticatedTenantsModel> {
+    const me: User = (this.modelFor('authenticated') as AuthenticatedRouteModel)
+      .user;
+
     const tenants = (await this.apollo.query(
       { query: getTenantsQuery },
       'getTenants',
@@ -46,11 +50,13 @@ export default class AuthenticatedTenants extends Route.extend({
       this.transitionTo('authenticated.tenants.index');
       return {
         tenants: null,
+        me,
       };
     }
 
     return {
       tenants,
+      me,
     };
   }
 }
