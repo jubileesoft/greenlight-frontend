@@ -24,7 +24,7 @@ module.exports = function (environment) {
     },
 
     apollo: {
-      apiURL: 'http://localhost:3000/graphql',
+      apiURL: process.env.API_URI + '/graphql',
     },
 
     torii: {

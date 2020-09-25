@@ -20,6 +20,7 @@ steps:
     displayName: 'Build DEV'
     env:
       target: 'dev'
+      API_URI: $(API_URI)
     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/alpha'))
 
   - task: ArchiveFiles@2
