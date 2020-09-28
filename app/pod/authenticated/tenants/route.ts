@@ -47,7 +47,7 @@ export default class AuthenticatedTenants extends Route.extend({
     )) as Tenant[] | null;
 
     if (!tenants) {
-      this.transitionTo('authenticated.tenants.index');
+      this.transitionTo('authenticated.tenants.new');
       return {
         tenants: null,
         me,

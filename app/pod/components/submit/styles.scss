@@ -1,8 +1,16 @@
+.wrapper {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
 .submit {
-  position: absolute;
-  bottom: 0;
-  left: 0; //60px;
-  right: 0; // 60px;
+  //position: absolute;
+  //bottom: 0;
+  //left: 0; //60px;
+  //right: 0; // 60px;
+
+
 
   height: 80px;
   

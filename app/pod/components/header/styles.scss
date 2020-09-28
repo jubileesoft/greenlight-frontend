@@ -1,3 +1,5 @@
+@import 'colors';
+
 .header {
   width: 100%;
   height: 60px;
@@ -8,4 +10,26 @@
   grid-template-rows: 1fr;
 
   align-items: center;
+}
+
+.header .me {
+  cursor: pointer;
+  height: 100%;
+  padding: 0 24px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  &:hover {
+    background: lighten($primary-color, 50%);
+  }
+}
+
+.popover-content {
+  width: 300px;
+}
+
+.arrow {
+  background: red;
 }

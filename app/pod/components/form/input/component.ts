@@ -1,7 +1,7 @@
 import Component from '@glimmer/component';
 
 interface FormInputArgs {
-  size: string;
+  size?: string;
 }
 
 export default class FormInput extends Component<FormInputArgs> {

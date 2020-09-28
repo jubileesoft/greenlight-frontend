@@ -5,7 +5,12 @@
   <div>
     {{yield}}
   </div>
-  <div>
+  <div local-class="me">
     {{@me.email}}
+    <EmberPopover @event="click" @side="bottom-end">
+      <div>
+        ToDo: Switch Tenant (if applicable) and here is a long text
+      </div>
+    </EmberPopover>
   </div>
 </div>

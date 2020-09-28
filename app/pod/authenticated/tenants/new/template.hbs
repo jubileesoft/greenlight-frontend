@@ -1,3 +1,30 @@
 {{#in-element this.headerElement}}
   NEW
 {{/in-element}}
+<div local-class="root">
+  <SubHeader>
+    <h1>
+      Create new Tenant
+    </h1>
+  </SubHeader>
+  <Form class={{local-class "form"}} as |form|>
+    <form.label>
+      Name
+    </form.label>
+    <form.input @size="2x">
+      <FormInput />
+    </form.input>
+    <form.label>
+      Tenant Admin Emails
+    </form.label>
+    <form.input @size="2x">
+      <FormInput />
+    </form.input>
+  </Form>
+
+  <Submit as |submit|>
+    <submit.button>
+      Save
+    </submit.button>
+  </Submit>
+</div>

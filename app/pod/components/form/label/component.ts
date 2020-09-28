@@ -1,5 +1,7 @@
 import Component from '@glimmer/component';
 
-interface FormLabelArgs {}
+interface FormLabelArgs {
+  text?: string;
+}
 
 export default class FormLabel extends Component<FormLabelArgs> {}
