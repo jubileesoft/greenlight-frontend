@@ -1,14 +1,33 @@
 .root {
   height: 100%;
   overflow-y: scroll;;
-  display: flex;
-  flex-direction: column;
+  
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr auto;
 
   background: #ffffff;
 
   .form {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 4;
     margin-left: 40px;
     margin-top: 12px;
+
+    justify-self: flex-start;
+
+    display: flex;
+    flex-direction: column;
+  }
+
+  .submit {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    z-index: 1;
   }
 }
 

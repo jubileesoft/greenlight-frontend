@@ -1,7 +1,12 @@
 <div local-class="label">
-  {{#if (has-block)}}
-    {{yield}}
-  {{else}}
+  <div>
     {{@text}}
+  </div>
+  {{#if this.isMandatory}}
+  <div local-class="with-asterisk">&#42;</div>
+  {{else}}
+    <div local-class="without-asterisk">
+      
+    </div>
   {{/if}}
 </div>

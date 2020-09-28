@@ -1,3 +1,9 @@
 <div ...attributes local-class="form">
-  {{yield (hash label=(component "form/label") input=(component "form/input"))}}
+  {{yield
+    (hash
+      label=(component "form/label")
+      input=(component "form/input")
+      back=(component "form/back")
+    )
+  }}
 </div>

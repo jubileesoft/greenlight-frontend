@@ -1,7 +1,21 @@
 .label {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   align-items: center;
   height: 36px;
   font-weight: 500;
+
+  .without-asterisk {
+    width: 20px;
+  }
+
+  .with-asterisk {
+    width: 20px;
+    font-size: 20px;
+    color: red;
+    padding-right: 4px;
+    text-align: right;
+    padding-top: 6px;
+  }
 }

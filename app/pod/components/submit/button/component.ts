@@ -1,7 +1,7 @@
 import Component from '@glimmer/component';
 
 interface SubmitButtonArgs {
-  type: string;
+  type?: string;
 }
 
 export default class SubmitButton extends Component<SubmitButtonArgs> {

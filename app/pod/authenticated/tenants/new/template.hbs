@@ -7,24 +7,37 @@
       Create new Tenant
     </h1>
   </SubHeader>
-  <Form class={{local-class "form"}} as |form|>
-    <form.label>
-      Name
-    </form.label>
-    <form.input @size="2x">
-      <FormInput />
-    </form.input>
-    <form.label>
-      Tenant Admin Emails
-    </form.label>
-    <form.input @size="2x">
-      <FormInput />
-    </form.input>
-  </Form>
 
-  <Submit as |submit|>
-    <submit.button>
-      Save
-    </submit.button>
+  <div class={{local-class "form"}}>
+    <Form as |form|>
+      <form.label @text="Name" @isMandatory={{true}} />
+      <form.input @size="2x">
+        <FormInput />
+      </form.input>
+      <form.back>
+        {{#if (eq this.nameStatus "error")}}
+          <div>
+            <FaIcon @icon="exclamation" @size="lg"/>
+            <EmberTooltip @text="This name is already taken."/>
+          </div>
+        {{else}}
+
+        {{/if}}
+      </form.back>
+      <form.label @text="Tenant Admin Emails" @isMandatory={{true}} />
+      <form.input @size="2x">
+        <FormInput />
+      </form.input>
+      <form.back>
+        <div>
+          <FaIcon @icon="info-circle" />
+          <EmberTooltip @text="comma separated email list" />
+        </div>
+      </form.back>
+    </Form>
+  </div>
+
+  <Submit local-class="submit" as |submit|>
+    <submit.button @type="primary" @text="Submit" />
   </Submit>
 </div>
