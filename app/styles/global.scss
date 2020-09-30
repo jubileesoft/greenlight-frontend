@@ -1,3 +1,6 @@
+@import 'colors';
+
+
 .no-select {
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Safari */
@@ -31,4 +34,28 @@
 .popover-clean {
   padding: 2px;
   font-size: inherit;
+}
+
+.color-gray-1 {
+  color: $gray-1;
+}
+
+.color-gray-2 {
+  color: $gray-2;
+}
+
+.color-gray-3 {
+  color: $gray-3;
+}
+
+.color-gray-4 {
+  color: $gray-4;
+}
+
+.color-gray-5 {
+  color: $gray-5;
+}
+
+.color-primary {
+  color: $primary-color;
 }

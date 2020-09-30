@@ -6,6 +6,7 @@ import { action } from '@ember/object';
 
 interface FormInputArgs {
   value?: string;
+  isValid?: boolean;
   items?: any[];
   displayPropertyName?: string;
   delay?: number;
@@ -17,6 +18,10 @@ export default class FormInput extends Component<FormInputArgs> {
   @tracked foundItems = A();
   foundItemsToItems: Map<number, number> = new Map<number, number>();
   @tracked selectedIndex: number | null = null;
+
+  get isValid(): boolean {
+    return typeof this.args.isValid === 'boolean' ? this.args.isValid : true;
+  }
 
   get hasFoundItems() {
     return this.foundItems.length > 0;

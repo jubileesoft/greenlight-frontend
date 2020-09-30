@@ -1,13 +1,109 @@
 import Controller from '@ember/controller';
 import { tracked } from '@glimmer/tracking';
+import { action } from '@ember/object';
+import { inject as service } from '@ember/service';
+import ApolloService from 'ember-apollo-client/services/apollo';
+import isTenantNameTakenQuery from 'greenlight-frontend/gql/tenants/is-tenant-name-taken.graphql';
+
+const NAME_STATUS = {
+  ERROR: 'error',
+  BUSY: 'busy',
+  OK: 'ok',
+  IDLE: 'idle',
+};
 
 export default class AuthenticatedTenantsNew extends Controller.extend({
   // anything which *must* be merged to prototype here
 }) {
-  @tracked nameStatus = 'error';
+  @service apollo!: ApolloService;
+
+  @tracked tenantName: string | null = null;
+  @tracked isTenantNameValid: boolean = true;
+  @tracked nameStatus = NAME_STATUS.IDLE;
+  @tracked adminEmails: string | null = null;
+  @tracked isAdminEmailsValid: boolean = true;
 
   get headerElement() {
     return document.getElementById('header-content');
+  }
+
+  // get canCreate() {
+  //   return (
+  //     this.nameStatus === NAME_STATUS.OK &&
+  //     this.isAdminEmailsOk(this.adminEmails)
+  //   );
+  // }
+
+  @action
+  async tenantNameOnChange(name: string) {
+    this.tenantName = name;
+    this.isTenantNameValid = true;
+
+    // Only check online when "there is more than whitespaces"
+    if (name.trim().length === 0) {
+      this.nameStatus = NAME_STATUS.IDLE;
+      return;
+    }
+
+    this.nameStatus = NAME_STATUS.BUSY;
+
+    try {
+      const variables = {
+        name,
+      };
+
+      const isTaken: boolean = await this.apollo.query(
+        {
+          query: isTenantNameTakenQuery,
+          variables,
+        },
+        'isTenantNameTaken',
+      );
+      if (isTaken) {
+        this.nameStatus = NAME_STATUS.ERROR;
+      } else {
+        this.nameStatus = NAME_STATUS.OK;
+      }
+    } catch (error) {
+      this.nameStatus = NAME_STATUS.ERROR;
+    }
+  }
+
+  @action
+  adminEmailsOnChange(emails: string) {
+    this.isAdminEmailsValid =
+      emails.trim().length === 0 || this.isAdminEmailsOk(emails);
+  }
+
+  @action
+  async submit() {
+    if (!this.tenantName || this.tenantName.trim().length === 0) {
+      this.isTenantNameValid = false;
+    }
+
+    if (!this.adminEmails || this.adminEmails.trim().length === 0) {
+      this.isAdminEmailsValid = false;
+    }
+  }
+
+  private isAdminEmailsOk(adminEmails: string | null): boolean {
+    const admins = adminEmails?.split(',');
+    if (!admins) {
+      return false;
+    }
+
+    for (const admin of admins) {
+      if (!this.validateEmail(admin)) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  private validateEmail(mail: string) {
+    const mailFormat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    return mail.match(mailFormat);
   }
 }
 

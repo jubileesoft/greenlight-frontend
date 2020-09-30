@@ -75,11 +75,13 @@
     &.selected {
       background: var(--gray-0);
     }
-    
+
     &:hover {
       background: var(--primary-color-lighten-45);
     }
-
-    
   }
+}
+
+.invalid {
+  border: 2px solid red !important;
 }

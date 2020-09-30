@@ -1,9 +1,9 @@
+@import 'colors';
+
 .button {
   height: 32px;
   margin-top: 16px;
   margin-bottom: 16px;
-
-  cursor: pointer;
 
   display: flex;
   flex-direction: row;
@@ -14,22 +14,12 @@
 
   border-radius: 22px;
 
-  &.primary {
-    color: #ffffff;
-    border: 2px solid var(--secondary-color-1-3);
-    background: var(--secondary-color-1-3);
-
-    &:hover {
-      border: 2px solid var(--gray-4);
-    }
-  }
-
   &.secondary {
     background: #f0f1f5;
-    border: 2px solid var(--gray-1);
+    border: 2px solid $gray-1;
 
     &:hover {
-      border: 2px solid var(--gray-4);
+      border: 2px solid $gray-4;
     }
   }
 
@@ -37,5 +27,19 @@
     font-size: 16px;
     padding: 0 32px;
     white-space: nowrap;
+  }
+}
+
+.enabled {
+  cursor: pointer;
+
+  &.primary {
+    color: #ffffff;
+    border: 2px solid var(--secondary-color-1-3);
+    background: var(--secondary-color-1-3);
+
+    &:hover {
+      border: 2px solid $gray-4;
+    }
   }
 }

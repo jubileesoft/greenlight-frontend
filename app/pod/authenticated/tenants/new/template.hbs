@@ -12,32 +12,55 @@
     <Form as |form|>
       <form.label @text="Name" @isMandatory={{true}} />
       <form.input @size="2x">
-        <FormInput />
+        <FormInput
+          @value={{this.tenantName}}
+          @isValid={{this.isTenantNameValid}}
+          @onChange={{this.tenantNameOnChange}}
+        />
       </form.input>
       <form.back>
         {{#if (eq this.nameStatus "error")}}
-          <div>
-            <FaIcon @icon="exclamation" @size="lg"/>
-            <EmberTooltip @text="This name is already taken."/>
-          </div>
+          <span class="fa-layers fa-lg" style="color: red;">
+            <FaIcon @icon="circle" @prefix="far" />
+            <FaIcon @icon="exclamation" @transform="shrink-8" />
+          </span>
+        {{else if (eq this.nameStatus "busy")}}
+          <FaIcon
+            class="color-gray-3"
+            @spin={{true}}
+            @icon="circle-notch"
+            @size="lg"
+          />
+        {{else if (eq this.nameStatus "ok")}}
+          {{! <FaIcon @prefix="far" @icon="check-circle" @size="lg" /> }}
+          <FaIcon class="color-primary" @icon="check" @size="lg" />
         {{else}}
-
+          {{! nothing }}
         {{/if}}
       </form.back>
       <form.label @text="Tenant Admin Emails" @isMandatory={{true}} />
       <form.input @size="2x">
-        <FormInput />
+        <FormInput
+          @value={{this.adminEmails}}
+          @isValid={{isAdminEmailsValid}}
+          @onChange={{this.adminEmailsOnChange}}
+        />
       </form.input>
       <form.back>
         <div>
-          <FaIcon @icon="info-circle" />
-          <EmberTooltip @text="comma separated email list" />
+          <FaIcon
+            class="color-gray-2"
+            @icon="question-circle"
+            @prefix="far"
+            @size="lg"
+          />
+          <EmberTooltip @text="Insert admin emails as comma separated list." />
         </div>
       </form.back>
     </Form>
   </div>
 
   <Submit local-class="submit" as |submit|>
-    <submit.button @type="primary" @text="Submit" />
+    <submit.button @type="primary" @text="Submit" @onClick={{this.submit}}/>
   </Submit>
 </div>

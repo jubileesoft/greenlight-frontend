@@ -1,7 +1,7 @@
 <div style="position: relative; width: 100%" ...attributes>
   <div local-class="grid">
     <input
-      local-class="form-input"
+      local-class={{concat "form-input" (unless this.isValid " invalid")}}
       type="text"
       value={{if @displayPropertyName (get @value @displayPropertyName) @value}}
       {{on "input" (perform this.onInputTask)}}
@@ -9,9 +9,9 @@
       {{on "change" this.onChange}}
     />
     {{#if @items}}
-    <div local-class="expander" {{on "click" this.expanderClicked}}>
-      <FaIcon @icon="chevron-down" @size="1x" />
-    </div>
+      <div local-class="expander" {{on "click" this.expanderClicked}}>
+        <FaIcon @icon="chevron-down" @size="1x" />
+      </div>
     {{/if}}
   </div>
   {{#if (gt this.foundItems.length 0)}}

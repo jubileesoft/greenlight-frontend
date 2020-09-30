@@ -1,4 +1,14 @@
-<div role="button" local-class={{concat "button " this.type}} ...attributes>
+<div
+  role="button"
+  local-class={{
+    concat
+    "button "
+    (if (eq this.isEnabled true) "enabled " "disabled ")
+    this.type
+  }}
+  ...attributes
+  {{on "click" this.onClick}}
+>
   {{#if (has-block)}}
     {{yield}}
   {{else}}

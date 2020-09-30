@@ -1,0 +1,3 @@
+query isTenantNameTaken($name: String!) {
+  isTenantNameTaken(name: $name)
+}
