@@ -61,6 +61,16 @@
   </div>
 
   <Submit local-class="submit" as |submit|>
-    <submit.button @type="primary" @text="Submit" @onClick={{this.submit}}/>
+    <submit.button @type="primary" @text="Submit" @onClick={{this.submit}} />
+    <submit.div local-class="saving">
+      {{#if (eq this.this.saveStatus "saving")}}
+        <FaIcon @icon="spinner" @spin={{true}} @size="2x" />
+        <div>
+          Creating tenant ...
+        </div>
+      {{else if (eq this.saveStatus "failed")}}
+        ERROR
+      {{/if}}
+    </submit.div>
   </Submit>
 </div>

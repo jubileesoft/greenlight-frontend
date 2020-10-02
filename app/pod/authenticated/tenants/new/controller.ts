@@ -12,6 +12,12 @@ const NAME_STATUS = {
   IDLE: 'idle',
 };
 
+const SAVE_STATUS = {
+  IDLE: '',
+  SAVING: 'saving',
+  FAILED: 'failed',
+};
+
 export default class AuthenticatedTenantsNew extends Controller.extend({
   // anything which *must* be merged to prototype here
 }) {
@@ -22,6 +28,7 @@ export default class AuthenticatedTenantsNew extends Controller.extend({
   @tracked nameStatus = NAME_STATUS.IDLE;
   @tracked adminEmails: string | null = null;
   @tracked isAdminEmailsValid: boolean = true;
+  @tracked saveStatus = SAVE_STATUS.IDLE;
 
   get headerElement() {
     return document.getElementById('header-content');
@@ -73,6 +80,7 @@ export default class AuthenticatedTenantsNew extends Controller.extend({
   adminEmailsOnChange(emails: string) {
     this.isAdminEmailsValid =
       emails.trim().length === 0 || this.isAdminEmailsOk(emails);
+    this.adminEmails = emails;
   }
 
   @action
@@ -84,16 +92,19 @@ export default class AuthenticatedTenantsNew extends Controller.extend({
     if (!this.adminEmails || this.adminEmails.trim().length === 0) {
       this.isAdminEmailsValid = false;
     }
+
+    this.saveStatus = SAVE_STATUS.SAVING;
   }
 
   private isAdminEmailsOk(adminEmails: string | null): boolean {
+    debugger;
     const admins = adminEmails?.split(',');
     if (!admins) {
       return false;
     }
 
     for (const admin of admins) {
-      if (!this.validateEmail(admin)) {
+      if (!this.validateEmail(admin.trim())) {
         return false;
       }
     }

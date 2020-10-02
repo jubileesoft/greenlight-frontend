@@ -1,3 +1,5 @@
+@import 'colors';
+
 .root {
   height: 100%;
   overflow-y: scroll;;
@@ -28,6 +30,22 @@
     grid-row-start: 3;
     grid-row-end: 4;
     z-index: 1;
+  }
+}
+
+.saving {
+  margin-left: 20px;
+  
+  display: grid;
+  grid-auto-flow: column;
+  column-gap: 16px;
+
+  align-items: center;
+
+  color: $gray-3;
+
+  .error {
+    color: red;
   }
 }
 
