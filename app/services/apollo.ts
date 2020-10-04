@@ -17,14 +17,6 @@ export default class Apollo extends ApolloService.extend({
 }) {
   @service session!: SessionService;
 
-  errorResultToString(result: ApolloErrorResult): string {
-    let errorText: string[] = [];
-    result.errors.forEach((error) => {
-      errorText.push(error.code + ': ' + error.message);
-    });
-    return errorText.join(' / ');
-  }
-
   link() {
     let httpLink = super.link();
 

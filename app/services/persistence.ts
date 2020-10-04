@@ -3,6 +3,7 @@ import { tracked } from '@glimmer/tracking';
 import string2Boolean from 'greenlight-frontend/utils/string-to-boolean';
 
 const STORAGE = {
+  SELECTED_TENANT_ID: 'selectedTenantId',
   SELECTEDAPPID: 'selectedAppId',
   NAVBARISEXPANDED: 'navbarIsExpanded',
 };
@@ -10,37 +11,21 @@ const STORAGE = {
 export default class Persistence extends Service.extend({
   // anything which *must* be merged to prototype here
 }) {
-  @tracked navbarIsExpanded: boolean = true;
-  @tracked selectedAppId: string | null = null;
+  @tracked counterSelectedTenantId: number = 0;
 
-  constructor() {
-    super(...arguments);
-    const lsSelectedAppId = localStorage.getItem(STORAGE.SELECTEDAPPID);
-    if (lsSelectedAppId) {
-      this.selectedAppId = lsSelectedAppId;
-    }
-    const lsNavbarIsExpanded = localStorage.getItem(STORAGE.NAVBARISEXPANDED);
-    if (
-      lsNavbarIsExpanded &&
-      typeof string2Boolean(lsNavbarIsExpanded) === 'boolean'
-    ) {
-      this.navbarIsExpanded = string2Boolean(lsNavbarIsExpanded);
-    }
+  get selectedTenanatId(): string | null {
+    const ignore = this.counterSelectedTenantId;
+    return localStorage.getItem(STORAGE.SELECTED_TENANT_ID);
   }
 
-  setSelectedAppId(id: string | null) {
+  setSelectedTenantId(id: string | null) {
     if (id) {
-      localStorage.setItem(STORAGE.SELECTEDAPPID, id);
+      localStorage.setItem(STORAGE.SELECTED_TENANT_ID, id);
     } else {
-      localStorage.removeItem(STORAGE.SELECTEDAPPID);
+      localStorage.removeItem(STORAGE.SELECTED_TENANT_ID);
     }
 
-    this.selectedAppId = id;
-  }
-
-  setNavbarIsExpanded(expanded: boolean) {
-    localStorage.setItem(STORAGE.NAVBARISEXPANDED, expanded.toString());
-    this.navbarIsExpanded = expanded;
+    this.counterSelectedTenantId++;
   }
 }
 

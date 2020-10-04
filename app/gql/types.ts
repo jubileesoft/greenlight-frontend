@@ -20,6 +20,11 @@ export interface Tenant {
   name: string;
 }
 
+export interface AddTenantInput {
+  name: string;
+  adminEmails: string;
+}
+
 export interface App {
   id: string;
   name: string;

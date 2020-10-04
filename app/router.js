@@ -28,9 +28,10 @@ Router.map(function () {
       });
     });
   });
-  this.route('authenticated', { path: 'auth' }, function() {
-    this.route('tenants', function() {
+  this.route('authenticated', { path: 'auth' }, function () {
+    this.route('tenants', function () {
       this.route('new');
+      this.route('id', { path: ':tenant_id' });
     });
     this.route('apps');
     this.route('unauthorized');

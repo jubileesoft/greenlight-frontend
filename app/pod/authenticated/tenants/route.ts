@@ -4,6 +4,7 @@ import { AuthenticatedRouteModel } from 'greenlight-frontend/pod/authenticated/r
 import { UserRoleType, Tenant, User } from 'greenlight-frontend/gql/types';
 import getTenantsQuery from 'greenlight-frontend/gql/tenants/get-tenants.graphql';
 import ApolloService from 'ember-apollo-client/services/apollo';
+import PersistenceServer from 'greenlight-frontend/services/persistence';
 
 export interface AuthenticatedTenantsModel {
   tenants: Tenant[] | null;
@@ -14,6 +15,7 @@ export default class AuthenticatedTenants extends Route.extend({
   // anything which *must* be merged to prototype here
 }) {
   @service apollo!: ApolloService;
+  @service persistence!: PersistenceServer;
 
   beforeModel() {
     const authenticatedRouteModel = this.modelFor(

@@ -9,3 +9,7 @@ export default class Apollo extends Service {
 
   public query<T = object>(opts: QueryOptions, resultKey?: string): Promise<T>;
 }
+
+export interface ApolloError {
+  errors: Array<{ extensions: { code: string }; message: string }>;
+}

@@ -2,7 +2,7 @@
 
 .root {
   height: 100%;
-  overflow-y: scroll;;
+  overflow-y: auto;;
   
   display: grid;
   grid-template-columns: 1fr;
@@ -46,6 +46,15 @@
 
   .error {
     color: red;
+    font-weight: 500;
+  }
+
+  .error:hover{
+    text-decoration: underline;
+    cursor: pointer;
   }
 }
 
+.inside-modal {
+  font-size: 12px;;
+}

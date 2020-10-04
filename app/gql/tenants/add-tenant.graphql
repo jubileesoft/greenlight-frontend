@@ -1,0 +1,7 @@
+mutation addTenant($input: AddTenantInput!) {
+  addTenant(input: $input) {
+    id
+    name
+    admins
+  }
+}

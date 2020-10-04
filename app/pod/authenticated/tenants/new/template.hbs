@@ -1,5 +1,5 @@
 {{#in-element this.headerElement}}
-  NEW
+  {{!-- NOTHING HERE --}}
 {{/in-element}}
 <div local-class="root">
   <SubHeader>
@@ -23,6 +23,7 @@
           <span class="fa-layers fa-lg" style="color: red;">
             <FaIcon @icon="circle" @prefix="far" />
             <FaIcon @icon="exclamation" @transform="shrink-8" />
+            <EmberTooltip @text="This name is already taken."/>
           </span>
         {{else if (eq this.nameStatus "busy")}}
           <FaIcon
@@ -69,8 +70,25 @@
           Creating tenant ...
         </div>
       {{else if (eq this.saveStatus "failed")}}
-        ERROR
+        <div
+          local-class="error"
+          {{on "click" (fn (mut this.showErrorModal true))}}
+        >
+          ERROR (view details)!
+        </div>
       {{/if}}
     </submit.div>
   </Submit>
+
+  {{#if this.showErrorModal}}
+    <ModalDialog
+      @onClose={{fn (mut this.showErrorModal false)}}
+      @targetAttachment="center"
+      @translucentOverlay="true"
+    >
+      <div local-class="inside-modal">
+        {{this.saveErrorMessage}}
+      </div>
+    </ModalDialog>
+  {{/if}}
 </div>

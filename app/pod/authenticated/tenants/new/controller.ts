@@ -4,6 +4,10 @@ import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 import ApolloService from 'ember-apollo-client/services/apollo';
 import isTenantNameTakenQuery from 'greenlight-frontend/gql/tenants/is-tenant-name-taken.graphql';
+import addTenantMutation from 'greenlight-frontend/gql/tenants/add-tenant.graphql';
+import getTenantsQuery from 'greenlight-frontend/gql/tenants/get-tenants.graphql';
+import { AddTenantInput, Tenant } from 'greenlight-frontend/gql/types';
+import Type from 'ember__routing';
 
 const NAME_STATUS = {
   ERROR: 'error',
@@ -22,6 +26,7 @@ export default class AuthenticatedTenantsNew extends Controller.extend({
   // anything which *must* be merged to prototype here
 }) {
   @service apollo!: ApolloService;
+  @service router!: Type.Router;
 
   @tracked tenantName: string | null = null;
   @tracked isTenantNameValid: boolean = true;
@@ -29,17 +34,11 @@ export default class AuthenticatedTenantsNew extends Controller.extend({
   @tracked adminEmails: string | null = null;
   @tracked isAdminEmailsValid: boolean = true;
   @tracked saveStatus = SAVE_STATUS.IDLE;
+  @tracked saveErrorMessage: string | null = null;
 
   get headerElement() {
     return document.getElementById('header-content');
   }
-
-  // get canCreate() {
-  //   return (
-  //     this.nameStatus === NAME_STATUS.OK &&
-  //     this.isAdminEmailsOk(this.adminEmails)
-  //   );
-  // }
 
   @action
   async tenantNameOnChange(name: string) {
@@ -63,6 +62,7 @@ export default class AuthenticatedTenantsNew extends Controller.extend({
         {
           query: isTenantNameTakenQuery,
           variables,
+          fetchPolicy: 'network-only',
         },
         'isTenantNameTaken',
       );
@@ -93,11 +93,57 @@ export default class AuthenticatedTenantsNew extends Controller.extend({
       this.isAdminEmailsValid = false;
     }
 
+    if (!this.isTenantNameValid || !this.isAdminEmailsValid) {
+      return;
+    }
+
     this.saveStatus = SAVE_STATUS.SAVING;
+
+    let tenant: Tenant | undefined;
+    try {
+      const input: AddTenantInput = {
+        name: this.tenantName as string,
+        adminEmails: this.adminEmails as string,
+      };
+
+      const variables = {
+        input,
+      };
+
+      tenant = await this.apollo.mutate(
+        {
+          mutation: addTenantMutation,
+          variables,
+          update: (store: any, { returnedData }) => {
+            if (!returnedData) {
+              return;
+            }
+            debugger;
+            // Read the data from our cache for this query.
+            const cachedData = store.readQuery({ query: getTenantsQuery });
+            // Write our data back to the cache.
+            store.writeQuery({
+              query: getTenantsQuery,
+              getTenants: [...cachedData.getTenants, returnedData.addTenant],
+              //relevantData: cachedData,
+            });
+          },
+        },
+        'addTenant',
+      );
+      this.saveStatus = SAVE_STATUS.IDLE;
+    } catch (error) {
+      console.log(error);
+      this.saveErrorMessage = JSON.stringify(error);
+      this.saveStatus = SAVE_STATUS.FAILED;
+    }
+
+    if (tenant) {
+      this.router.transitionTo('authenticated.tenants.id', tenant.id);
+    }
   }
 
   private isAdminEmailsOk(adminEmails: string | null): boolean {
-    debugger;
     const admins = adminEmails?.split(',');
     if (!admins) {
       return false;
