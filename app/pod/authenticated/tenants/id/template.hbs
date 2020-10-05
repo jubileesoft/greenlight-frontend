@@ -1,1 +1,21 @@
+{{#in-element this.global.headerElement}}
+  <div local-class="header-container">
+    <div local-class="tenant">
+      {{this.model.tenant.name}}
+    </div>
+    <Actions local-class="actions" @side="bottom">
+      <Menu>
+        <Menu::Item>
+          switch tenant
+        </Menu::Item>
+        <Menu::Item {{on "click" this.createNewTenant}}>
+          create new tenant
+        </Menu::Item>
+        <Menu::Item>
+          delete tenant
+        </Menu::Item>
+      </Menu>
+    </Actions>
+  </div>
+{{/in-element}}
 Hi

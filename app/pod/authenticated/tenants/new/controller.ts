@@ -3,6 +3,7 @@ import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 import ApolloService from 'ember-apollo-client/services/apollo';
+import PersistenceService from 'greenlight-frontend/services/persistence';
 import isTenantNameTakenQuery from 'greenlight-frontend/gql/tenants/is-tenant-name-taken.graphql';
 import addTenantMutation from 'greenlight-frontend/gql/tenants/add-tenant.graphql';
 import getTenantsQuery from 'greenlight-frontend/gql/tenants/get-tenants.graphql';
@@ -27,6 +28,7 @@ export default class AuthenticatedTenantsNew extends Controller.extend({
 }) {
   @service apollo!: ApolloService;
   @service router!: Type.Router;
+  @service persistence!: PersistenceService;
 
   @tracked tenantName: string | null = null;
   @tracked isTenantNameValid: boolean = true;
@@ -114,18 +116,23 @@ export default class AuthenticatedTenantsNew extends Controller.extend({
         {
           mutation: addTenantMutation,
           variables,
-          update: (store: any, { returnedData }) => {
-            if (!returnedData) {
+          update: (store: any, returnedData: { data }) => {
+            //debugger;
+            if (!returnedData || !returnedData.data) {
               return;
             }
-            debugger;
+
             // Read the data from our cache for this query.
             const cachedData = store.readQuery({ query: getTenantsQuery });
             // Write our data back to the cache.
             store.writeQuery({
               query: getTenantsQuery,
-              getTenants: [...cachedData.getTenants, returnedData.addTenant],
-              //relevantData: cachedData,
+              data: {
+                getTenants: [
+                  ...cachedData.getTenants,
+                  returnedData.data.addTenant,
+                ],
+              },
             });
           },
         },
@@ -139,6 +146,7 @@ export default class AuthenticatedTenantsNew extends Controller.extend({
     }
 
     if (tenant) {
+      this.persistence.setSelectedTenantId(tenant.id);
       this.router.transitionTo('authenticated.tenants.id', tenant.id);
     }
   }

@@ -1,0 +1,16 @@
+@import 'colors';
+
+.actions-root {
+  font-size: 12px;
+  border-radius: 12px;
+  border: 1px solid $gray-2;
+  padding: 0 8px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  &:hover {
+    background: lighten($primary-color, 45%);
+  }  
+}

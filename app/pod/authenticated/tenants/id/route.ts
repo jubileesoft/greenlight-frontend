@@ -1,4 +1,8 @@
 import Route from '@ember/routing/route';
+import { queryManager } from 'ember-apollo-client';
+import ApolloService from 'greenlight-frontend/services/apollo';
+import getTenantsQuery from 'greenlight-frontend/gql/tenants/get-tenants.graphql';
+import { Tenant } from 'greenlight-frontend/gql/types';
 
 interface RouteParams {
   tenant_id: string;
@@ -7,7 +11,17 @@ interface RouteParams {
 export default class AuthenticatedTenantsId extends Route.extend({
   // anything which *must* be merged to prototype here
 }) {
-  model(params: RouteParams) {
-    return null;
+  @queryManager apollo!: ApolloService;
+
+  async model(params: RouteParams) {
+    const tenants: Tenant[] | null = await this.apollo.query(
+      { query: getTenantsQuery, fetchPolicy: 'cache-only' },
+      'getTenants',
+    );
+
+    console.log(tenants);
+    return {
+      tenant: tenants?.find((x) => x.id === params.tenant_id),
+    };
   }
 }

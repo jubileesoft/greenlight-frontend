@@ -1,0 +1,15 @@
+.header-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  .tenant {
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  .actions {
+    margin-left: 16px;
+  }
+}

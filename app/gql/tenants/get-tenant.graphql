@@ -1,0 +1,7 @@
+query getTenants($id: String!) {
+  getTenants(id: $id) {
+    id
+    name
+    admins
+  }
+}
