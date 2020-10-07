@@ -33,3 +33,46 @@
 .arrow {
   background: red;
 }
+
+.brand {
+  display: flex;
+  flex-direction: row;
+
+  .logo {
+    margin-left: 24px;
+    width: 40px;
+    align-self: center;
+  }
+
+  .vl {
+    margin: 0 6px;
+    height: 24px;
+    border-left: 1px solid $primary-color;
+    align-self: center;
+  }
+
+  .text {
+    //margin-left: 20px;
+    padding: 4px 4px 2px 4px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    font-weight: 500;
+    color: $primary-color;
+    cursor: pointer;
+
+    &:hover {
+      background: lighten($primary-color, 45%);
+    }
+
+    .line-1 {
+      font-size: 12px;
+    }
+
+    .line-2 {
+      font-size: 24px;
+    }
+  }
+}
