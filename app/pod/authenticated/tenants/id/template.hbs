@@ -20,7 +20,12 @@
 {{/in-element}}
 <div local-class="root">
   <div local-class="menu">
-    
+    <LinkTo @route="authenticated.tenants.id.index">
+      Tenant
+    </LinkTo>
+    <LinkTo @route="authenticated.tenants.id.apps">
+      Apps
+    </LinkTo>
   </div>
   <div>
     {{outlet}}

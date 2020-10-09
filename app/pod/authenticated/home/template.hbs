@@ -4,5 +4,15 @@
       {{! CONTENT WILL GO HERE WITH IN-ELEMENT HELPER }}
     </div>
   </Header>
- 
+  <div local-class="content">
+    <div local-class="color"></div>
+    <div local-class="applications">
+      <div {{on "click" this.goToTenants}}>
+        Tenant Management
+      </div>
+      <div {{on "click" this.goToApps}}>
+        App Management
+      </div>
+    </div>
+  </div>
 </div>

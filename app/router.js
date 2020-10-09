@@ -31,7 +31,9 @@ Router.map(function () {
   this.route('authenticated', { path: 'auth' }, function () {
     this.route('tenants', function () {
       this.route('new');
-      this.route('id', { path: ':tenant_id' }, function() {});
+      this.route('id', { path: ':tenant_id' }, function() {
+        this.route('apps');
+      });
     });
     this.route('apps');
     this.route('unauthorized');

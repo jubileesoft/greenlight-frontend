@@ -29,4 +29,29 @@
   color: #ffffff;
   width: 250px;
   height: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  font-size: 20px;
+  
+
+  :global(.active) {
+    background: lighten($primary-color, 50%);
+    color: $gray-3;
+  }
+
+  a {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    color: #ffffff;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: $gray-3;
+    background: lighten($primary-color, 45%);
+  }
 }
