@@ -35,5 +35,6 @@ Router.map(function () {
     });
     this.route('apps');
     this.route('unauthorized');
+    this.route('home');
   });
 });
