@@ -42,6 +42,10 @@ module.exports = function (environment) {
         },
       },
     },
+
+    emberKeyboard: {
+      disableInputsInitializer: true
+    }
   };
 
   if (environment === 'development') {
