@@ -22,13 +22,14 @@
     background: $primary-color;
   }
 
-  .applications {
+  .apps {
     justify-self: center;
 
     grid-row-start: 2;
     grid-row-end: 3;
     grid-column-start: 1;
     grid-column-end: 2;
+    gap: 24px;
     
     width: 600px;
     min-height: 400px;
@@ -40,6 +41,28 @@
 
     display: grid;
     grid-auto-flow: column;
-    grid-template-columns: repeat(auto, 50px);
+    grid-template-columns: repeat(auto-fill, 100px);
+
+    .app {
+      height: 100px;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      font-size: 12px;
+
+      cursor: pointer;
+
+      &:hover {
+        background: lighten($primary-color, 45%);
+      }
+
+      .icon {
+        margin-bottom: 6px;
+        color: $gray-3;
+      }
+    }
   }
 }

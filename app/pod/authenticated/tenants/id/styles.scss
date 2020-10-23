@@ -34,7 +34,6 @@
   flex-direction: column;
 
   font-size: 20px;
-  
 
   :global(.active) {
     background: lighten($primary-color, 50%);
@@ -52,6 +51,15 @@
 
   a:hover {
     color: $gray-3;
+    background: lighten($primary-color, 45%);
+  }
+}
+
+.switch-tenant-item {
+  padding: 16px;
+  cursor: pointer;
+
+  &:hover {
     background: lighten($primary-color, 45%);
   }
 }

@@ -1,6 +1,7 @@
 <div ...attributes local-class="actions-root">
   <FaIcon @icon="ellipsis-h" class="color-gray-2" />
   <EmberPopover
+    @isShown={{@isOpen}}
     @tooltipClass="popover-clean"
     @event="click"
     @side={{this.side}}

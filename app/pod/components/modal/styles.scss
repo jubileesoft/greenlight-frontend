@@ -1,0 +1,19 @@
+.inside {
+  display: flex;
+  flex-direction: column;
+}
+
+.inside .header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  font-size: 28px;
+}
+
+.inside .content {
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+

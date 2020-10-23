@@ -8,12 +8,17 @@ interface RouteParams {
   tenant_id: string;
 }
 
+export interface AuthenticatedTenantsIdRouteModel {
+  tenant: Tenant | undefined;
+  tenants: Tenant[] | null;
+}
+
 export default class AuthenticatedTenantsId extends Route.extend({
   // anything which *must* be merged to prototype here
 }) {
   @queryManager apollo!: ApolloService;
 
-  async model(params: RouteParams) {
+  async model(params: RouteParams): Promise<AuthenticatedTenantsIdRouteModel> {
     const tenants: Tenant[] | null = await this.apollo.query(
       { query: getTenantsQuery, fetchPolicy: 'cache-only' },
       'getTenants',
@@ -22,6 +27,7 @@ export default class AuthenticatedTenantsId extends Route.extend({
     console.log(tenants);
     return {
       tenant: tenants?.find((x) => x.id === params.tenant_id),
+      tenants: tenants,
     };
   }
 }

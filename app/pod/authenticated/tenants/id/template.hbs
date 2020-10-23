@@ -3,9 +3,13 @@
     <div local-class="tenant">
       {{this.model.tenant.name}}
     </div>
-    <Actions local-class="actions" @side="bottom">
+    <Actions
+      @isOpen={{this.actionsIsOpen}}
+      local-class="actions"
+      @side="bottom"
+    >
       <Menu>
-        <Menu::Item>
+        <Menu::Item {{on "click" this.switchTenant}}>
           switch tenant
         </Menu::Item>
         <Menu::Item {{on "click" this.createNewTenant}}>
@@ -31,3 +35,18 @@
     {{outlet}}
   </div>
 </div>
+
+<Modal
+  @isOpen={{this.isSwitchTenantModalOpen}}
+  @title="Switch tenant to ..."
+  @onClose={{fn (mut this.isSwitchTenantModalOpen false)}}
+>
+  {{#each @model.tenants as |tenant|}}
+    <div
+      local-class="switch-tenant-item"
+      {{on "click" (fn this.switchToTenant tenant)}}
+    >
+      {{tenant.name}}
+    </div>
+  {{/each}}
+</Modal>

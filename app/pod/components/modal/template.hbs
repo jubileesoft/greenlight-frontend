@@ -1,0 +1,16 @@
+{{#if @isOpen}}
+  <ModalDialog
+    @onClose={{@onClose}}
+    @targetAttachment="center"
+    @translucentOverlay="true"
+  >
+    <div local-class="inside">
+      <div local-class="header">
+        {{@title}}
+      </div>
+      <div local-class="content">
+        {{yield}}
+      </div>
+    </div>
+  </ModalDialog>
+{{/if}}

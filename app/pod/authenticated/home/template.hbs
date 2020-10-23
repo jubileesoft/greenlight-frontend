@@ -6,12 +6,16 @@
   </Header>
   <div local-class="content">
     <div local-class="color"></div>
-    <div local-class="applications">
-      <div {{on "click" this.goToTenants}}>
-        Tenant Management
+    <div local-class="apps">
+      <div local-class="app" {{on "click" this.goToTenants}}>
+        <FaIcon @size="3x" local-class="icon" @icon="asterisk"/>
+        <div>Tenant</div>
+        <div>Management</div>
       </div>
-      <div {{on "click" this.goToApps}}>
-        App Management
+      <div local-class="app" {{on "click" this.goToApps}}>
+        <FaIcon @size="3x" local-class="icon" @icon="at"/>
+        <div>App</div>
+        <div>Management</div>
       </div>
     </div>
   </div>
