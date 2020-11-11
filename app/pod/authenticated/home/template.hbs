@@ -7,16 +7,16 @@
   <div local-class="content">
     <div local-class="color"></div>
     <div local-class="apps">
-      <div local-class="app" {{on "click" this.goToTenants}}>
+      <LinkTo @route="authenticated.tenants" local-class="app">
         <FaIcon @size="3x" local-class="icon" @icon="asterisk"/>
         <div>Tenant</div>
         <div>Management</div>
-      </div>
-      <div local-class="app" {{on "click" this.goToApps}}>
+      </LinkTo>
+      <LinkTo @route="authenticated.apps" local-class="app">
         <FaIcon @size="3x" local-class="icon" @icon="at"/>
         <div>App</div>
         <div>Management</div>
-      </div>
+      </LinkTo>
     </div>
   </div>
 </div>

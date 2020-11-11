@@ -43,6 +43,11 @@
     grid-auto-flow: column;
     grid-template-columns: repeat(auto-fill, 100px);
 
+    a.app {
+      text-decoration: none;
+      color: black;
+    }
+
     .app {
       height: 100px;
 

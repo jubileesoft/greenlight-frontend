@@ -1,1 +1,8 @@
-{{outlet}}
+<div local-class="root">
+  <Header @me={{@model.me}}>
+    <div id="header-content">
+      {{!-- CONTENT WILL GO HERE WITH IN-ELEMENT HELPER --}}
+    </div>
+  </Header>
+  {{outlet}}
+</div>

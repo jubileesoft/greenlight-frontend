@@ -1,18 +1,18 @@
 <div local-class="header">
-  <div local-class="brand" {{on "click" this.goHome}}>
-    <div local-class="logo">
-      {{inline-svg "brand.svg"}}
-    </div>
-    <div local-class="vl"></div>
-    <div local-class="text">
-      <div local-class="line-1">
-        THE GREEN LIGHT
+  <LinkTo @route="authenticated.home" local-class="brand">
+      <div local-class="logo">
+        {{inline-svg "brand.svg"}}
       </div>
-      <div local-class="line-2">
-        PROJECT
+      <div local-class="vl"></div>
+      <div local-class="text">
+        <div local-class="line-1">
+          THE GREEN LIGHT
+        </div>
+        <div local-class="line-2">
+          PROJECT
+        </div>
       </div>
-    </div>
-  </div>
+  </LinkTo>
   <div>
     {{yield}}
   </div>
